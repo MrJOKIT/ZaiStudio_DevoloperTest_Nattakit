@@ -13,6 +13,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/_James/Script/LogIn/GoogleAuthentication.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
 }</component>
@@ -88,7 +91,7 @@
       <updated>1737123511970</updated>
       <workItem from="1737123513661" duration="1818000" />
       <workItem from="1737127873162" duration="1555000" />
-      <workItem from="1737146612641" duration="1313000" />
+      <workItem from="1737146612641" duration="3107000" />
     </task>
     <servers />
   </component>
