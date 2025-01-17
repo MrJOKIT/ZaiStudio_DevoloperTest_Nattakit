@@ -2143,8 +2143,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1812945986}
-  - component: {fileID: 1812945985}
-  - component: {fileID: 1812945984}
   m_Layer: 0
   m_Name: LogInManager
   m_TagString: Untagged
@@ -2152,37 +2150,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1812945984
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1812945983}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a443aa1819965c42943201b824c9ac0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  loginButton: {fileID: 1590828683}
-  playerImage: {fileID: 0}
-  playerNameText: {fileID: 1513578239}
-  usernameText: {fileID: 96079623}
-  loginController: {fileID: 1812945985}
-  playerInfoPanel: {fileID: 204418033}
-  loginPanel: {fileID: 1127581835}
---- !u!114 &1812945985
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1812945983}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b373bca3505eaa4088b75994b0a6fa0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1812945986
 Transform:
   m_ObjectHideFlags: 0
