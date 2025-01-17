@@ -45,6 +45,11 @@ public class GoogleAuthentication : MonoBehaviour
         GoogleSignIn.DefaultInstance.SignIn().ContinueWith(OnAuthenticationFinished, TaskScheduler.Default);
     }
 
+    public void OnGuestSignIn()
+    {
+        StartCoroutine(GuestUpdateUI());
+    }
+
     internal void OnAuthenticationFinished(Task<GoogleSignInUser> task)
     {
         if (task.IsFaulted)
