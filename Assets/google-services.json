@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "126837788588",
+    "project_id": "peversuslogin",
+    "storage_bucket": "peversuslogin.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:126837788588:android:e72d709ae7d6075af33409",
+        "android_client_info": {
+          "package_name": "com.James.DevoloperTestProject"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDi6z08_c7s4ko0hudOqnhbeaqvqA47-xA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

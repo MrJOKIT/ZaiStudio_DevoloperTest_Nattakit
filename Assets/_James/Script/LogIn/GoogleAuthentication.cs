@@ -12,7 +12,7 @@ public class GoogleAuthentication : MonoBehaviour
 {
     [Header("Google ID")]
     public string imageURL;
-    public string webClientID = "997092099467-8fib0dvlmioojgsnha62js1br9n8237j.apps.googleusercontent.com";
+    public string webClientID = "126837788588-75nohqgudivl5cmbgpc6dqpmot2uvorh.apps.googleusercontent.com";
     
     [Header("Google UI")]
     public TextMeshProUGUI userNameText;
@@ -34,6 +34,7 @@ public class GoogleAuthentication : MonoBehaviour
         configuration = new GoogleSignInConfiguration
         {
             WebClientId = webClientID,
+            
             RequestIdToken = true,
             UseGameSignIn = false,
             RequestEmail = true

@@ -14,6 +14,8 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/PlayerController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/_James/Script/IUnit.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_James/Script/LogIn/GoogleAuthentication.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.adaptiveperformance@5.1.1/Runtime/Core/AdaptiverPerformanceLog.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -92,7 +94,9 @@
       <updated>1737123511970</updated>
       <workItem from="1737123513661" duration="1818000" />
       <workItem from="1737127873162" duration="1555000" />
-      <workItem from="1737146612641" duration="11265000" />
+      <workItem from="1737146612641" duration="11513000" />
+      <workItem from="1737191785473" duration="2559000" />
+      <workItem from="1737197580304" duration="10067000" />
     </task>
     <servers />
   </component>
