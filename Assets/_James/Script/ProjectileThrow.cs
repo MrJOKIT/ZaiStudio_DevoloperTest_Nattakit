@@ -34,8 +34,8 @@ public class ProjectileThrow : MonoBehaviour
     public void FireProjectile(IUnit host)
     {
         var projectileObject = Instantiate(projectile,shootPoint.position,shootPoint.rotation);
-        float currentForce = GameManager.instance.WindForce + projectileSpeed;
-        Vector2 velocity = shootPoint.up * currentForce;
+       // float currentForce = GameManager.instance.WindForce + projectileSpeed;
+        Vector2 velocity = shootPoint.up * projectileSpeed; //currentForce แทน projectileSpeed
         projectileObject.GetComponent<ProjectileObject>().host = host;
         projectileObject.GetComponent<Rigidbody2D>().velocity = velocity;
         

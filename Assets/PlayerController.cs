@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public enum ShootState
 {
@@ -11,14 +13,23 @@ public enum ShootState
 }
 public class PlayerController : MonoBehaviour,IUnit
 {
+    [Header("Player Information")]
     public PlayerNumber currentPlayerNumber;
     public ShootState shootState;
     public GameObject playerCanvas;
     private ProjectileThrow projectileThrow;
+
+    [Space(20)] 
+    [Header("Player Status")] 
+    [SerializeField] private float playerHealth;
+    [SerializeField] private float playerMaxHealth = 50f;
+    public Image healthBar;
     
     private void Awake()
     {
         projectileThrow = GetComponent<ProjectileThrow>();
+        playerHealth = playerMaxHealth;
+        UpdateHealthUI();
     }
 
     private void Update()
@@ -30,7 +41,7 @@ public class PlayerController : MonoBehaviour,IUnit
         if (Input.GetMouseButton(0))
         {
             shootState = ShootState.OnShooting;
-            projectileThrow.projectileSpeed += Time.deltaTime * 10;
+            projectileThrow.projectileSpeed += Time.deltaTime * 15;
             if (projectileThrow.projectileSpeed > projectileThrow.GetEndProjectileSpeed)
             {
                 projectileThrow.FireProjectile(this);
@@ -55,5 +66,10 @@ public class PlayerController : MonoBehaviour,IUnit
     {
         playerCanvas.SetActive(false);
         GameManager.instance.GetComponent<TurnManager>().EndUnitTurn();
+    }
+
+    public void UpdateHealthUI()
+    {
+        healthBar.fillAmount = playerHealth / playerMaxHealth;
     }
 }

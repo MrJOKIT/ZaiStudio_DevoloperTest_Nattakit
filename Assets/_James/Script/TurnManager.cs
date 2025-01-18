@@ -33,6 +33,7 @@ public class TurnManager : MonoBehaviour
         }
         else
         {
+            GetComponent<GameManager>().RandomWindForce();
             if (GetComponent<GameManager>().GameMode == GameMode.PVP)
             {
                 GetComponent<GameManager>().playerTwo.GetComponent<IUnit>().StartTurn();
