@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     [SerializeField] private GameMode gameMode;
-    
+    [Space(20)]
     [Header("Wind Force Setting")]
     [SerializeField] private float currentWindForce;
     [SerializeField] private float maxWindForce = 20f;
@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     public GameObject rightArrow;
     public Image leftForceBar;
     public Image rightForceBar;
+
     
     [Space(20)]
     [Header("Character")] 
@@ -39,6 +40,7 @@ public class GameManager : MonoBehaviour
     public GameObject playerTwo;
     public GameObject enemy;
     //public float WindForce { get { return currentWindForce; }}
+    
     public GameMode GameMode { get { return gameMode; }}
 
     private void Awake()
@@ -73,14 +75,14 @@ public class GameManager : MonoBehaviour
     public void RandomWindForce()
     {
         float randomNumber = Random.Range(0f, 1f);
-        if (randomNumber < 0.4f)
+        if (randomNumber < 0.45f)
         {
             areaEffector2D.forceAngle = 180f;
             windSide = WindSide.LeftSide;
             currentWindForce = Random.Range(0f,maxWindForce);
             areaEffector2D.forceMagnitude = currentWindForce;
         }
-        else if (randomNumber > 0.6f)
+        else if (randomNumber > 0.55f)
         {
             areaEffector2D.forceAngle = 0f;
             windSide = WindSide.RightSide;

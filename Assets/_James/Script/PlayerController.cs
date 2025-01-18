@@ -68,7 +68,12 @@ public class PlayerController : MonoBehaviour,IUnit
         GameManager.instance.GetComponent<TurnManager>().EndUnitTurn();
     }
 
-    public void UpdateHealthUI()
+    public void TakeDamage(float damage)
+    {
+        playerHealth -= damage;
+        UpdateHealthUI();
+    }
+    private void UpdateHealthUI()
     {
         healthBar.fillAmount = playerHealth / playerMaxHealth;
     }
