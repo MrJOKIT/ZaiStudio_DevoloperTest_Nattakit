@@ -21,6 +21,7 @@ public class GoogleAuthentication : MonoBehaviour
     [Header("UI Panel")] 
     public GameObject loginPanel; 
     public GameObject profilePanel;
+    public GameObject menuPanel;
     
     [Header("Guest ID")]
     public string guestName;
@@ -47,7 +48,13 @@ public class GoogleAuthentication : MonoBehaviour
 
     public void OnGuestSignIn()
     {
-        StartCoroutine(GuestUpdateUI());
+        Debug.Log("Guest Sign In");
+        
+        userNameText.text = "GUEST";
+        profileImage.sprite = guestProfileImage;
+        loginPanel.SetActive(false);
+        profilePanel.SetActive(true);
+        menuPanel.SetActive(true);
     }
 
     internal void OnAuthenticationFinished(Task<GoogleSignInUser> task)
@@ -84,30 +91,18 @@ public class GoogleAuthentication : MonoBehaviour
         userNameText.text = user.DisplayName;
         imageURL = user.ImageUrl.ToString();
         
-        loginPanel.SetActive(false);
-        yield return null;
-        profilePanel.SetActive(true);
-        
         UnityWebRequest request = UnityWebRequestTexture.GetTexture(imageURL);
         yield return request.SendWebRequest();
         Texture2D downloadedTexture = DownloadHandlerTexture.GetContent(request);
-        Rect rect = new Rect(0, 0, downloadedTexture.width, downloadedTexture.height);
+        Rect rect = new Rect(0,0, downloadedTexture.width, downloadedTexture.height);
         Vector2 pivot = new Vector2(0.5f, 0.5f);
         profileImage.sprite = Sprite.Create(downloadedTexture, rect, pivot);
+
+        loginPanel.SetActive(false);
+        profilePanel.SetActive(true);
+        menuPanel.SetActive(true);
     }
     
-    IEnumerator GuestUpdateUI()
-    {
-        Debug.Log("Guest Sign In");
-        
-        userNameText.text = "GUEST";
-        profileImage.sprite = guestProfileImage;
-        loginPanel.SetActive(false);
-        yield return null;
-        profilePanel.SetActive(true);
-        
-        
-    }
 
     public void OnSignOut() 
     {
