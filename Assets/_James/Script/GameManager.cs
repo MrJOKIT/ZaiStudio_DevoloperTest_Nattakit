@@ -17,10 +17,17 @@ public enum WindSide
     LeftSide,
     RightSide,
 }
+public enum EnemyDifficulty
+{
+    Easy,
+    Normal,
+    Hard,
+}
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     [SerializeField] private GameMode gameMode;
+    [SerializeField] private bool isGameOver;
     [Space(20)]
     [Header("Wind Force Setting")]
     [SerializeField] private float currentWindForce;
@@ -32,21 +39,33 @@ public class GameManager : MonoBehaviour
     public GameObject rightArrow;
     public Image leftForceBar;
     public Image rightForceBar;
-
     
     [Space(20)]
     [Header("Character")] 
     public GameObject playerOne;
     public GameObject playerTwo;
-    public GameObject enemy;
-
     public GameObject playerTwoItemList;
+    [Space(20)]
+    [Header("Enemy")]
+    public GameObject enemy;
+    [Space(20)]
+    public EnemyDifficulty enemyDifficulty;
+    public EnemyData easyEnemyData;
+    public EnemyData normalEnemyData;
+    public EnemyData hardEnemyData;
+
+    [Space(20)] 
+    [Header("Game Over Setting")]
+    public GameObject gameOverPanel;
+
+    
     //public float WindForce { get { return currentWindForce; }}
     
     public GameMode GameMode { get { return gameMode; }}
 
     public float CurrentWindForce { get { return currentWindForce; } }
     public WindSide WindSide { get { return windSide; } }
+    public bool IsGameOver { get { return isGameOver; } }
 
     private void Awake()
     {
@@ -71,6 +90,19 @@ public class GameManager : MonoBehaviour
             playerTwo.SetActive(false);
             playerTwoItemList.SetActive(false);
             enemy.SetActive(true);
+            switch (enemyDifficulty)
+            {
+                case EnemyDifficulty.Easy:
+                    enemy.GetComponent<EnemyController>().SetUpEnemy(easyEnemyData);
+                    break;
+                case EnemyDifficulty.Normal:
+                    enemy.GetComponent<EnemyController>().SetUpEnemy(normalEnemyData);
+                    break;
+                case EnemyDifficulty.Hard:
+                    enemy.GetComponent<EnemyController>().SetUpEnemy(hardEnemyData);
+                    break;
+            }
+            
         }
         
         windSide = WindSide.None;
@@ -129,5 +161,11 @@ public class GameManager : MonoBehaviour
                 rightForceBar.fillAmount = currentWindForce / maxWindForce;
                 break;
         }
+    }
+
+    public void GameOver()
+    {
+        gameOverPanel.SetActive(true);
+        isGameOver = true;
     }
 }

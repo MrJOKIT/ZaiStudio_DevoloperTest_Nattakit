@@ -65,6 +65,10 @@ public class TurnManager : MonoBehaviour
 
     private void Update()
     {
+        if (GetComponent<GameManager>().IsGameOver)
+        {
+            return;
+        }
         if (timerState == TimerState.Stopped)
         {
             return;

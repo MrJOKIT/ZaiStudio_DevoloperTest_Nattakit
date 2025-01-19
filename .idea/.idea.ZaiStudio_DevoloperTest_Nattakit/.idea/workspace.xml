@@ -14,8 +14,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/TakeDamagePoint.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/WorldDamage.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/_James/Script/GoogleSheet/EnemyData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_James/Script/IUnit.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_James/Script/LogIn/GoogleAuthentication.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_James/Script/ProjectileObject.cs" root0="FORCE_HIGHLIGHTING" />
@@ -99,7 +98,7 @@
       <workItem from="1737146612641" duration="11513000" />
       <workItem from="1737191785473" duration="2559000" />
       <workItem from="1737197580304" duration="36301000" />
-      <workItem from="1737282091284" duration="13143000" />
+      <workItem from="1737282091284" duration="19289000" />
     </task>
     <servers />
   </component>

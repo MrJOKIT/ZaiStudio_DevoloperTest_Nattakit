@@ -37,6 +37,10 @@ public class PlayerController : MonoBehaviour,IUnit
     {
         GetComponent<Collider2D>().enabled = currentPlayerNumber == GameManager.instance.GetComponent<TurnManager>().playerTurnState;
         
+        if (GetComponent<GameManager>().IsGameOver)
+        {
+            return;
+        }
         if (shootState == ShootState.ShootSuccess || currentPlayerNumber != GameManager.instance.GetComponent<TurnManager>().playerTurnState)
         {
             return;
@@ -88,6 +92,7 @@ public class PlayerController : MonoBehaviour,IUnit
         if (playerHealth <= 0)
         {
             playerHealth = 0;
+            GameManager.instance.GameOver();
         }
         UpdateHealthUI();
     }

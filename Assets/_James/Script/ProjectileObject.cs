@@ -109,6 +109,10 @@ public class ProjectileObject : MonoBehaviour
                 {
                     other.gameObject.GetComponent<TakeDamagePoint>().player.TakeDamage(GameManager.instance.GetComponent<WorldDamage>().GetPowerDamage());
                 }
+                else if (other.gameObject.GetComponent<EnemyTakeDamagePoint>() != null)
+                {
+                    other.gameObject.GetComponent<EnemyTakeDamagePoint>().enemy.TakeDamage(GameManager.instance.GetComponent<WorldDamage>().GetPowerDamage());
+                }
             }
             else if (isDoubleAttack)
             {
@@ -116,12 +120,20 @@ public class ProjectileObject : MonoBehaviour
                 {
                     other.gameObject.GetComponent<TakeDamagePoint>().player.TakeDamage(GameManager.instance.GetComponent<WorldDamage>().GetDoubleDamage());
                 }
+                else if (other.gameObject.GetComponent<EnemyTakeDamagePoint>() != null)
+                {
+                    other.gameObject.GetComponent<EnemyTakeDamagePoint>().enemy.TakeDamage(GameManager.instance.GetComponent<WorldDamage>().GetDoubleDamage());
+                }
             }
             else
             { 
                 if (other.gameObject.GetComponent<TakeDamagePoint>() != null)
                 {
                     other.gameObject.GetComponent<TakeDamagePoint>().player.TakeDamage(GameManager.instance.GetComponent<WorldDamage>().GetNormalDamage());
+                }
+                else if (other.gameObject.GetComponent<EnemyTakeDamagePoint>() != null)
+                {
+                    other.gameObject.GetComponent<EnemyTakeDamagePoint>().enemy.TakeDamage(GameManager.instance.GetComponent<WorldDamage>().GetNormalDamage());
                 }
             }
             Debug.Log("Head");
@@ -136,12 +148,20 @@ public class ProjectileObject : MonoBehaviour
                 {
                     other.gameObject.GetComponent<TakeDamagePoint>().player.TakeDamage(GameManager.instance.GetComponent<WorldDamage>().GetPowerDamage());
                 }
+                else if (other.gameObject.GetComponent<EnemyTakeDamagePoint>() != null)
+                {
+                    other.gameObject.GetComponent<EnemyTakeDamagePoint>().enemy.TakeDamage(GameManager.instance.GetComponent<WorldDamage>().GetPowerDamage());
+                }
             }
             else if (isDoubleAttack)
             {
                 if (other.gameObject.GetComponent<TakeDamagePoint>() != null)
                 {
                     other.gameObject.GetComponent<TakeDamagePoint>().player.TakeDamage(GameManager.instance.GetComponent<WorldDamage>().GetDoubleDamage());
+                }
+                else if (other.gameObject.GetComponent<EnemyTakeDamagePoint>() != null)
+                {
+                    other.gameObject.GetComponent<EnemyTakeDamagePoint>().enemy.TakeDamage(GameManager.instance.GetComponent<WorldDamage>().GetDoubleDamage());
                 }
             }
             else
@@ -150,7 +170,11 @@ public class ProjectileObject : MonoBehaviour
                 {
                     other.gameObject.GetComponent<TakeDamagePoint>().player.TakeDamage(GameManager.instance.GetComponent<WorldDamage>().GetSmallDamage());
                 }
-            }
+                else if (other.gameObject.GetComponent<EnemyTakeDamagePoint>() != null)
+                {
+                    other.gameObject.GetComponent<EnemyTakeDamagePoint>().enemy.TakeDamage(GameManager.instance.GetComponent<WorldDamage>().GetSmallDamage());
+                }
+            } 
             Debug.Log("Body"); 
             host.EndTurn();
             Destroy(gameObject);
