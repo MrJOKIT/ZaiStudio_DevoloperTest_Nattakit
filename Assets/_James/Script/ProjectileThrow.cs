@@ -11,22 +11,38 @@ public enum PowerList
     PowerThrow,
     DoubleAttack,
 }
+
+public enum ShootSide
+{
+    LeftSide,
+    RightSide,
+}
 public class ProjectileThrow : MonoBehaviour
 {
-    [Header("References")]
+    [Header("References")] 
+    public ShootSide shootSide;
     public Transform shootPoint;
+    public Transform shootTarget;
     public GameObject projectile;
     public GameObject powerProjectile;
+    private Vector3 startTarget;
     [Space(20)]
     [Header("Projectile Setting")]
-    [SerializeField] private float startProjectileSpeed = 15;
-    [SerializeField] private float endProjectileSpeed = 50;
+    [SerializeField] private float startProjectileSpeed = 0;
+    [SerializeField] private float endProjectileSpeed = 35;
     public float GetEndProjectileSpeed { get { return endProjectileSpeed; } }
 
     [Space(20)] 
     [Header("Current Speed")] 
     public Image shootBar;
     public float projectileSpeed;
+
+    [Header("Trajectory Setting")] 
+    public float trajectoryMaxSpeed;
+    public float trajectoryMaxHeight;
+    public AnimationCurve projectileCurve;
+    public AnimationCurve axisCorrectionProjectileCurve;
+    public AnimationCurve speedProjectileCurve;
 
     [Space(20)] 
     [Header("Projectile Ability")]
@@ -38,35 +54,69 @@ public class ProjectileThrow : MonoBehaviour
     private void Awake()
     {
         projectileSpeed = startProjectileSpeed;
+        startTarget = shootTarget.position;
     }
 
     private void Update()
     {
-        shootBar.fillAmount = (projectileSpeed - 15) / (endProjectileSpeed - 15);
+        shootBar.fillAmount = (projectileSpeed) / (endProjectileSpeed);
+
+        if (GetComponent<PlayerController>().shootState == ShootState.OnShooting)
+        {
+            
+            if (shootSide == ShootSide.LeftSide)
+            {
+                if (GameManager.instance.WindSide == WindSide.LeftSide)
+                {
+                    shootTarget.position += Vector3.left * Time.deltaTime * (7.5f + GameManager.instance.CurrentWindForce);
+                }
+                else if (GameManager.instance.WindSide == WindSide.RightSide)
+                {
+                    shootTarget.position += Vector3.left * Time.deltaTime * (7.5f - GameManager.instance.CurrentWindForce);
+                }
+                else
+                {
+                    shootTarget.position += Vector3.left * Time.deltaTime * 7.5f;
+                }
+                
+            } 
+            else
+            { 
+                if (GameManager.instance.WindSide == WindSide.LeftSide)
+                {
+                    shootTarget.position += Vector3.right * Time.deltaTime * (7.5f - GameManager.instance.CurrentWindForce);
+                }
+                else if (GameManager.instance.WindSide == WindSide.RightSide)
+                {
+                    shootTarget.position += Vector3.right * Time.deltaTime * (7.5f + GameManager.instance.CurrentWindForce);
+                }
+                else
+                {
+                    shootTarget.position += Vector3.right * Time.deltaTime * 7.5f;
+                }
+            }
+           
+        }
     }
-    
+
+    public void ResetTarget()
+    {
+        shootTarget.position = startTarget;
+    }
     public void FireProjectile(IUnit host)
     {
         
         if (currentPower == PowerList.PowerThrow)
         {
-            var projectileObject = Instantiate(powerProjectile,shootPoint.position,shootPoint.rotation);
-            Vector2 velocity = shootPoint.up * projectileSpeed;
-            projectileObject.GetComponent<ProjectileObject>().host = host;
-            projectileObject.GetComponent<Rigidbody2D>().velocity = velocity;
-            projectileObject.GetComponent<ProjectileObject>().isPowerThrow = true;
+            var projectileObject = Instantiate(powerProjectile, shootPoint.position, shootPoint.rotation).GetComponent<ProjectileObject>();
+            projectileObject.InitializeProjectile(shootTarget,trajectoryMaxSpeed,trajectoryMaxHeight,currentPower,host);
+            projectileObject.InitializeAnimationCurve(projectileCurve,axisCorrectionProjectileCurve,speedProjectileCurve);
         }
         else
         {
-            var projectileObject = Instantiate(projectile,shootPoint.position,shootPoint.rotation);
-            Vector2 velocity = shootPoint.up * projectileSpeed;
-            projectileObject.GetComponent<ProjectileObject>().host = host;
-            projectileObject.GetComponent<Rigidbody2D>().velocity = velocity;
-            
-            if (currentPower == PowerList.DoubleAttack)
-            {
-                projectileObject.GetComponent<ProjectileObject>().isDoubleAttack = true;
-            }
+            var projectileObject = Instantiate(projectile, shootPoint.position, shootPoint.rotation).GetComponent<ProjectileObject>();
+            projectileObject.InitializeProjectile(shootTarget,trajectoryMaxSpeed,trajectoryMaxHeight,currentPower,host);
+            projectileObject.InitializeAnimationCurve(projectileCurve,axisCorrectionProjectileCurve,speedProjectileCurve);
             
         }
 

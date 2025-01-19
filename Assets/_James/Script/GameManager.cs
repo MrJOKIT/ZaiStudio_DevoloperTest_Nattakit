@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     [Space(20)]
     [Header("Wind Force Setting")]
     [SerializeField] private float currentWindForce;
-    [SerializeField] private float maxWindForce = 20f;
+    [SerializeField] private float maxWindForce = 2.5f;
     [SerializeField] private AreaEffector2D areaEffector2D;
     [SerializeField] private WindSide windSide;
     [Header("Wind Force UI")] 
@@ -44,6 +44,9 @@ public class GameManager : MonoBehaviour
     //public float WindForce { get { return currentWindForce; }}
     
     public GameMode GameMode { get { return gameMode; }}
+
+    public float CurrentWindForce { get { return currentWindForce; } }
+    public WindSide WindSide { get { return windSide; } }
 
     private void Awake()
     {
@@ -81,23 +84,23 @@ public class GameManager : MonoBehaviour
         float randomNumber = Random.Range(0f, 1f);
         if (randomNumber < 0.45f)
         {
-            areaEffector2D.forceAngle = 180f;
+            //areaEffector2D.forceAngle = 180f;
             windSide = WindSide.LeftSide;
             currentWindForce = Random.Range(0f,maxWindForce);
-            areaEffector2D.forceMagnitude = currentWindForce;
+            //areaEffector2D.forceMagnitude = currentWindForce;
         }
         else if (randomNumber > 0.55f)
         {
-            areaEffector2D.forceAngle = 0f;
+            //areaEffector2D.forceAngle = 0f;
             windSide = WindSide.RightSide;
             currentWindForce = Random.Range(0f,maxWindForce);
-            areaEffector2D.forceMagnitude = currentWindForce;
+            //areaEffector2D.forceMagnitude = currentWindForce;
         }
         else
         {
             windSide = WindSide.None;
             currentWindForce = 0;
-            areaEffector2D.forceMagnitude = currentWindForce;
+            //areaEffector2D.forceMagnitude = currentWindForce;
         }
         
         UpdateWindForceUI();

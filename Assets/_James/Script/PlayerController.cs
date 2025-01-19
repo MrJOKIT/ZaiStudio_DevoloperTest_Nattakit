@@ -77,6 +77,7 @@ public class PlayerController : MonoBehaviour,IUnit
         else
         {
             GetComponent<ProjectileThrow>().currentPower = PowerList.None;
+            GetComponent<ProjectileThrow>().ResetTarget();
             GameManager.instance.GetComponent<TurnManager>().EndUnitTurn();
         }
     } 
