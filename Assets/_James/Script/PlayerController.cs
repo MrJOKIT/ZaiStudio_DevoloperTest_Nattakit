@@ -35,6 +35,8 @@ public class PlayerController : MonoBehaviour,IUnit
 
     private void Update()
     {
+        GetComponent<Collider2D>().enabled = currentPlayerNumber == GameManager.instance.GetComponent<TurnManager>().playerTurnState;
+        
         if (shootState == ShootState.ShootSuccess || currentPlayerNumber != GameManager.instance.GetComponent<TurnManager>().playerTurnState)
         {
             return;
