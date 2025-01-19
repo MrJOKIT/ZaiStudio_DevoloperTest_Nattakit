@@ -66,8 +66,18 @@ public class PlayerController : MonoBehaviour,IUnit
     public void EndTurn()
     {
         playerCanvas.SetActive(false);
-        GameManager.instance.GetComponent<TurnManager>().EndUnitTurn();
-    }
+        
+        if (GetComponent<ProjectileThrow>().currentPower == PowerList.DoubleAttack)
+        {
+            GetComponent<ProjectileThrow>().currentPower = PowerList.None;
+            projectileThrow.FireProjectile(this);
+        }
+        else
+        {
+            GetComponent<ProjectileThrow>().currentPower = PowerList.None;
+            GameManager.instance.GetComponent<TurnManager>().EndUnitTurn();
+        }
+    } 
 
     public void TakeDamage(float damage)
     {

@@ -31,6 +31,9 @@ public class ProjectileThrow : MonoBehaviour
     [Space(20)] 
     [Header("Projectile Ability")]
     public PowerList currentPower;
+    public GameObject powerThrowButton;
+    public GameObject doubleAttackButton;
+    public GameObject healButton;
 
     private void Awake()
     {
@@ -44,13 +47,33 @@ public class ProjectileThrow : MonoBehaviour
     
     public void FireProjectile(IUnit host)
     {
-        var projectileObject = Instantiate(projectile,shootPoint.position,shootPoint.rotation);
-       // float currentForce = GameManager.instance.WindForce + projectileSpeed;
-        Vector2 velocity = shootPoint.up * projectileSpeed; //currentForce แทน projectileSpeed
-        projectileObject.GetComponent<ProjectileObject>().host = host;
-        projectileObject.GetComponent<Rigidbody2D>().velocity = velocity;
         
-        projectileSpeed = startProjectileSpeed;
+        if (currentPower == PowerList.PowerThrow)
+        {
+            var projectileObject = Instantiate(powerProjectile,shootPoint.position,shootPoint.rotation);
+            Vector2 velocity = shootPoint.up * projectileSpeed;
+            projectileObject.GetComponent<ProjectileObject>().host = host;
+            projectileObject.GetComponent<Rigidbody2D>().velocity = velocity;
+            projectileObject.GetComponent<ProjectileObject>().isPowerThrow = true;
+        }
+        else
+        {
+            var projectileObject = Instantiate(projectile,shootPoint.position,shootPoint.rotation);
+            Vector2 velocity = shootPoint.up * projectileSpeed;
+            projectileObject.GetComponent<ProjectileObject>().host = host;
+            projectileObject.GetComponent<Rigidbody2D>().velocity = velocity;
+            
+            if (currentPower == PowerList.DoubleAttack)
+            {
+                projectileObject.GetComponent<ProjectileObject>().isDoubleAttack = true;
+            }
+            
+        }
+
+        if (currentPower != PowerList.DoubleAttack)
+        {
+            projectileSpeed = startProjectileSpeed;
+        }
         
         GameManager.instance.GetComponent<TurnManager>().StopTimer();
     }
@@ -62,6 +85,7 @@ public class ProjectileThrow : MonoBehaviour
             return;
         }
         currentPower = PowerList.PowerThrow;
+        powerThrowButton.SetActive(false);
     }
 
     public void UseDoubleAttack()
@@ -70,7 +94,8 @@ public class ProjectileThrow : MonoBehaviour
         {
             return;
         }
-        currentPower = PowerList.PowerThrow;
+        currentPower = PowerList.DoubleAttack;
+        doubleAttackButton.SetActive(false);
     }
     
     public void UseHeal()
@@ -81,5 +106,6 @@ public class ProjectileThrow : MonoBehaviour
         }
         GetComponent<PlayerController>().TakeHeal(20);
         GetComponent<IUnit>().EndTurn();
+        healButton.SetActive(false);
     }
 }

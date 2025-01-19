@@ -39,6 +39,8 @@ public class GameManager : MonoBehaviour
     public GameObject playerOne;
     public GameObject playerTwo;
     public GameObject enemy;
+
+    public GameObject playerTwoItemList;
     //public float WindForce { get { return currentWindForce; }}
     
     public GameMode GameMode { get { return gameMode; }}
@@ -59,10 +61,12 @@ public class GameManager : MonoBehaviour
         {
             enemy.SetActive(false);
             playerTwo.SetActive(true);
+            playerTwoItemList.SetActive(true);
         }
         else if (gameMode == GameMode.PVE)
         {
-            playerOne.SetActive(false);
+            playerTwo.SetActive(false);
+            playerTwoItemList.SetActive(false);
             enemy.SetActive(true);
         }
         

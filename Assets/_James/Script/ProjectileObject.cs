@@ -8,6 +8,7 @@ public class ProjectileObject : MonoBehaviour
     [Header("References")]
     public IUnit host;
     public bool isPowerThrow;
+    public bool isDoubleAttack;
     private Rigidbody2D rb;
     private void Awake()
     {
@@ -31,6 +32,13 @@ public class ProjectileObject : MonoBehaviour
                     other.gameObject.GetComponent<TakeDamagePoint>().player.TakeDamage(GameManager.instance.GetComponent<WorldDamage>().GetPowerDamage());
                 }
             }
+            else if (isDoubleAttack)
+            {
+                if (other.gameObject.GetComponent<TakeDamagePoint>() != null)
+                {
+                    other.gameObject.GetComponent<TakeDamagePoint>().player.TakeDamage(GameManager.instance.GetComponent<WorldDamage>().GetDoubleDamage());
+                }
+            }
             else
             { 
                 if (other.gameObject.GetComponent<TakeDamagePoint>() != null)
@@ -49,6 +57,13 @@ public class ProjectileObject : MonoBehaviour
                 if (other.gameObject.GetComponent<TakeDamagePoint>() != null)
                 {
                     other.gameObject.GetComponent<TakeDamagePoint>().player.TakeDamage(GameManager.instance.GetComponent<WorldDamage>().GetPowerDamage());
+                }
+            }
+            else if (isDoubleAttack)
+            {
+                if (other.gameObject.GetComponent<TakeDamagePoint>() != null)
+                {
+                    other.gameObject.GetComponent<TakeDamagePoint>().player.TakeDamage(GameManager.instance.GetComponent<WorldDamage>().GetDoubleDamage());
                 }
             }
             else
