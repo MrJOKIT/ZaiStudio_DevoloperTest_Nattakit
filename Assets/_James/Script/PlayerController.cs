@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour,IUnit
     [SerializeField] private float playerHealth;
     [SerializeField] private float playerMaxHealth = 50f;
     public Image healthBar;
+    public bool onMouseOver;
     
     private void Awake()
     {
@@ -38,7 +39,7 @@ public class PlayerController : MonoBehaviour,IUnit
         {
             return;
         }
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && onMouseOver || Input.GetMouseButton(0) && shootState == ShootState.OnShooting)
         {
             shootState = ShootState.OnShooting;
             projectileThrow.projectileSpeed += Time.deltaTime * 15;
@@ -49,7 +50,7 @@ public class PlayerController : MonoBehaviour,IUnit
             }
         }
 
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) && onMouseOver || Input.GetMouseButtonUp(0) && shootState == ShootState.OnShooting)
         { 
             projectileThrow.FireProjectile(this);
             shootState = ShootState.ShootSuccess;
@@ -71,10 +72,34 @@ public class PlayerController : MonoBehaviour,IUnit
     public void TakeDamage(float damage)
     {
         playerHealth -= damage;
+        if (playerHealth <= 0)
+        {
+            playerHealth = 0;
+        }
+        UpdateHealthUI();
+    }
+
+    public void TakeHeal(float heal)
+    {
+        playerHealth += heal;
+        if (playerHealth > playerMaxHealth)
+        {
+            playerHealth = playerMaxHealth;
+        }
         UpdateHealthUI();
     }
     private void UpdateHealthUI()
     {
         healthBar.fillAmount = playerHealth / playerMaxHealth;
+    }
+
+    private void OnMouseEnter()
+    {
+        onMouseOver = true;
+    }
+
+    private void OnMouseExit()
+    {
+        onMouseOver = false;
     }
 }

@@ -10,7 +10,6 @@ public enum PowerList
     None,
     PowerThrow,
     DoubleAttack,
-    Heal,
 }
 public class ProjectileThrow : MonoBehaviour
 {
@@ -54,5 +53,33 @@ public class ProjectileThrow : MonoBehaviour
         projectileSpeed = startProjectileSpeed;
         
         GameManager.instance.GetComponent<TurnManager>().StopTimer();
+    }
+
+    public void UsePowerThrow()
+    {
+        if (currentPower != PowerList.None || GameManager.instance.GetComponent<TurnManager>().playerTurnState != GetComponent<PlayerController>().currentPlayerNumber)
+        {
+            return;
+        }
+        currentPower = PowerList.PowerThrow;
+    }
+
+    public void UseDoubleAttack()
+    {
+        if (currentPower != PowerList.None || GameManager.instance.GetComponent<TurnManager>().playerTurnState != GetComponent<PlayerController>().currentPlayerNumber)
+        {
+            return;
+        }
+        currentPower = PowerList.PowerThrow;
+    }
+    
+    public void UseHeal()
+    {
+        if (currentPower != PowerList.None || GameManager.instance.GetComponent<TurnManager>().playerTurnState != GetComponent<PlayerController>().currentPlayerNumber)
+        {
+            return;
+        }
+        GetComponent<PlayerController>().TakeHeal(20);
+        GetComponent<IUnit>().EndTurn();
     }
 }
