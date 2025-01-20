@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using _James.Script.GoogleSheet;
 using Spine.Unity;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,6 +18,8 @@ public class EnemyController : MonoBehaviour, IUnit
 
     [Header("Enemy Setting")] 
     [Range(0,100f)][SerializeField] private float missChance = 50f;
+    public PowerList enemyPower;
+    public bool isUsePower;
     public bool isDoubleAttackUse;
     [Header("Enemy UI")]
     public Image healthBar;
@@ -28,18 +31,15 @@ public class EnemyController : MonoBehaviour, IUnit
     }
     
 
-    private void Start()
+    public void InitializedEnemy(float enemyMaxHealth,float missChance,PowerList enemyPower)
     {
-        enemyHealth = enemyMaxHealth;
+        this.enemyMaxHealth = enemyMaxHealth;
+        this.missChance = missChance;
+        this.enemyPower = enemyPower;
+        enemyHealth = this.enemyMaxHealth;
         UpdateHealthUI();
     }
-
-    public void SetUpEnemy(EnemyData enemyData)
-    {
-        this.enemyData = enemyData;
-        enemyMaxHealth = enemyData.enemyMaxHealth;
-        missChance = enemyData.missChance;
-    }
+    
     public void StartTurn()
     {
         ShootPlayer();
@@ -64,6 +64,10 @@ public class EnemyController : MonoBehaviour, IUnit
     public void PlayHitAnimation()
     {
         skeletonAnimation.AnimationState.SetAnimation(0, "Happy Friendly", true);
+        if (GameManager.instance.IsGameOver)
+        {
+            return;
+        }
         StartCoroutine(EndTurnDelay());
     }
 

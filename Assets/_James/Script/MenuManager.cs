@@ -15,14 +15,14 @@ public class MenuManager : MonoBehaviour
     
     public void SelectEasyDifficulty()
     {
-        GameModeManager.instance.enemyDifficulty = EnemyDifficulty.Easy;
+        GameModeManager.instance.enemyDifficulty = EnemyDifficulty.EnemyEasy;
     }
     public void SelectNormalDifficulty()
     {
-        GameModeManager.instance.enemyDifficulty = EnemyDifficulty.Normal;
+        GameModeManager.instance.enemyDifficulty = EnemyDifficulty.EnemyNormal;
     }
     public void SelectHardDifficulty()
     {
-        GameModeManager.instance.enemyDifficulty = EnemyDifficulty.Hard;
+        GameModeManager.instance.enemyDifficulty = EnemyDifficulty.EnemyHard;
     }
 }

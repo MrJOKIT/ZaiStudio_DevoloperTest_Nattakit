@@ -1686,6 +1686,7 @@ GameObject:
   - component: {fileID: 449513783}
   - component: {fileID: 449513782}
   - component: {fileID: 449513784}
+  - component: {fileID: 449513785}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -1705,11 +1706,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e86976ee973b89438614caed912f475, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyData: {fileID: 11400000, guid: b6c62fefcbb0c8f409c04ac7af94b3ee, type: 2}
+  enemyData:
+    Name: 0
+    HP: 0
+    MissedChance: 0
+    PowerList: 0
   enemyNumber: 1
   enemyHealth: 0
   enemyMaxHealth: 50
   missChance: 50
+  enemyPower: 0
+  isUsePower: 0
   isDoubleAttackUse: 0
   healthBar: {fileID: 431788256}
   skeletonAnimation: {fileID: 110636344}
@@ -1731,7 +1738,7 @@ Transform:
   - {fileID: 1666269182}
   - {fileID: 502066337}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &449513784
 MonoBehaviour:
@@ -1835,8 +1842,19 @@ MonoBehaviour:
   endAttackPoint: {x: 10, y: -1.5}
   startPerfectAttackPoint: {x: 5.5, y: -1.5}
   endPerfectAttackPoint: {x: 7.5, y: -1.5}
-  isUsePowerAttack: 0
-  isUseDoubleAttack: 0
+--- !u!114 &449513785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 449513781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b476d374b7dc0e4691f4e59f8451778, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dataBase: {fileID: 11400000, guid: b9d0e2d533d482948885041872f121a8, type: 2}
 --- !u!1 &456011273
 GameObject:
   m_ObjectHideFlags: 0
@@ -2186,6 +2204,7 @@ GameObject:
   - component: {fileID: 565222333}
   - component: {fileID: 565222332}
   - component: {fileID: 565222335}
+  - component: {fileID: 565222336}
   m_Layer: 0
   m_Name: PlayerTwo
   m_TagString: Untagged
@@ -2314,7 +2333,9 @@ MonoBehaviour:
   currentPlayerNumber: 1
   shootState: 0
   playerCanvas: {fileID: 868204705}
-  playerData: {fileID: 11400000, guid: 056b68135c686604dbd6a2286ee4a2bc, type: 2}
+  playerData:
+    Name: 
+    HP: 0
   playerHealth: 0
   playerMaxHealth: 50
   healPoint: 0
@@ -2340,7 +2361,7 @@ Transform:
   - {fileID: 935313554}
   - {fileID: 1141435021}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!70 &565222335
 CapsuleCollider2D:
@@ -2377,6 +2398,21 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 1.5}
   m_Size: {x: 3, y: 1}
   m_Direction: 0
+--- !u!114 &565222336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 565222331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b083bac59516c1648a1ec10bd5e12840, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dataBase: {fileID: 11400000, guid: b9d0e2d533d482948885041872f121a8, type: 2}
+  playerName: Player
+  healName: HP
 --- !u!1 &573952427
 GameObject:
   m_ObjectHideFlags: 0
@@ -4246,7 +4282,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTurnState: 0
   timerState: 0
-  gameSettingData: {fileID: 11400000, guid: 6201d5ddbcd0f524eaf34aa88280b41a, type: 2}
+  dataBase: {fileID: 11400000, guid: b9d0e2d533d482948885041872f121a8, type: 2}
   timeToThink: 30
   timeToWarning: 10
   timerWarningUIOne: {fileID: 573952427}
@@ -4280,9 +4316,21 @@ MonoBehaviour:
   playerTwoItemList: {fileID: 1401641482}
   enemy: {fileID: 449513781}
   enemyDifficulty: 0
-  easyEnemyData: {fileID: 11400000, guid: b6c62fefcbb0c8f409c04ac7af94b3ee, type: 2}
-  normalEnemyData: {fileID: 11400000, guid: 4294b87b922d0684c82c98d77fe669f5, type: 2}
-  hardEnemyData: {fileID: 11400000, guid: e8b1f57b5f9d9d3459254f934b7443ef, type: 2}
+  easyEnemyData:
+    Name: 0
+    HP: 0
+    MissedChance: 0
+    PowerList: 0
+  normalEnemyData:
+    Name: 0
+    HP: 0
+    MissedChance: 0
+    PowerList: 0
+  hardEnemyData:
+    Name: 0
+    HP: 0
+    MissedChance: 0
+    PowerList: 0
   gameOverPanel: {fileID: 198216216}
 --- !u!4 &1082859405
 Transform:
@@ -4311,7 +4359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1fbf2369495cfd46a095bcb369e7f36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageData: {fileID: 11400000, guid: 9d5efe96a351ca346b7d295b9db17660, type: 2}
+  dataBase: {fileID: 11400000, guid: b9d0e2d533d482948885041872f121a8, type: 2}
   smallDamage: 5
   normalDamage: 8
   powerDamage: 10
@@ -5034,6 +5082,37 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 42.6, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &1293531181
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1293531182}
+  m_Layer: 0
+  m_Name: DataBaseManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1293531182
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293531181}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.989676, y: 0.66510224, z: 0.088882245}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1314958830
 GameObject:
   m_ObjectHideFlags: 0
@@ -5180,6 +5259,7 @@ GameObject:
   - component: {fileID: 1334314396}
   - component: {fileID: 1334314397}
   - component: {fileID: 1334314395}
+  - component: {fileID: 1334314400}
   - component: {fileID: 1334314398}
   - component: {fileID: 1334314399}
   m_Layer: 0
@@ -5314,7 +5394,7 @@ Transform:
   - {fileID: 1372493332}
   - {fileID: 907496090}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1334314397
 MonoBehaviour:
@@ -5331,7 +5411,9 @@ MonoBehaviour:
   currentPlayerNumber: 0
   shootState: 0
   playerCanvas: {fileID: 236268170}
-  playerData: {fileID: 11400000, guid: 056b68135c686604dbd6a2286ee4a2bc, type: 2}
+  playerData:
+    Name: 
+    HP: 0
   playerHealth: 0
   playerMaxHealth: 50
   healPoint: 0
@@ -5400,6 +5482,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1334314400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1334314394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b083bac59516c1648a1ec10bd5e12840, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dataBase: {fileID: 11400000, guid: b9d0e2d533d482948885041872f121a8, type: 2}
+  playerName: Player
+  healName: HP
 --- !u!1 &1372493331
 GameObject:
   m_ObjectHideFlags: 0
@@ -5614,7 +5711,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1401641482
 GameObject:
@@ -6645,7 +6742,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1759911879
 GameObject:
@@ -8509,7 +8606,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2143573017
 GameObject:

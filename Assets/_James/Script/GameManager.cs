@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using _James.Script.GoogleSheet;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -19,9 +20,9 @@ public enum WindSide
 }
 public enum EnemyDifficulty
 {
-    Easy,
-    Normal,
-    Hard,
+    EnemyEasy,
+    EnemyNormal,
+    EnemyHard,
 }
 public class GameManager : MonoBehaviour
 {
@@ -84,7 +85,7 @@ public class GameManager : MonoBehaviour
         else
         {
             gameMode = GameMode.PVE;
-            enemyDifficulty = EnemyDifficulty.Hard;
+            enemyDifficulty = EnemyDifficulty.EnemyHard;
         }
         
         SetUpGame();
@@ -103,18 +104,18 @@ public class GameManager : MonoBehaviour
             playerTwo.SetActive(false);
             playerTwoItemList.SetActive(false);
             enemy.SetActive(true);
-            switch (enemyDifficulty)
+            /*switch (enemyDifficulty)
             {
-                case EnemyDifficulty.Easy:
+                case EnemyDifficulty.EnemyEasy:
                     enemy.GetComponent<EnemyController>().SetUpEnemy(easyEnemyData);
                     break;
-                case EnemyDifficulty.Normal:
+                case EnemyDifficulty.EnemyNormal:
                     enemy.GetComponent<EnemyController>().SetUpEnemy(normalEnemyData);
                     break;
-                case EnemyDifficulty.Hard:
+                case EnemyDifficulty.EnemyHard:
                     enemy.GetComponent<EnemyController>().SetUpEnemy(hardEnemyData);
                     break;
-            }
+            }*/
             
         }
         

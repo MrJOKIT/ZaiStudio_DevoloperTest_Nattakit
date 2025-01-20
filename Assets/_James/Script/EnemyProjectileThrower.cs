@@ -27,8 +27,6 @@ public class EnemyProjectileThrower : MonoBehaviour
     [Space(10)] 
     [SerializeField] private Vector2 startPerfectAttackPoint;
     [SerializeField] private Vector2 endPerfectAttackPoint;
-    public bool isUsePowerAttack;
-    public bool isUseDoubleAttack;
     
     
     
@@ -47,7 +45,7 @@ public class EnemyProjectileThrower : MonoBehaviour
             shootTarget.position = new Vector3(shootTarget.position.x, shootTarget.position.y,0);
         }
 
-        if (GameManager.instance.enemyDifficulty == EnemyDifficulty.Normal && GameManager.instance.CurrentWindForce < 0.5f && isUseDoubleAttack == false)
+        if (GetComponent<EnemyController>().enemyPower == PowerList.DoubleAttack && GameManager.instance.CurrentWindForce < 0.5f && GetComponent<EnemyController>().isUsePower == false)
         {
             // double attack
             currentPower = PowerList.DoubleAttack;
@@ -60,10 +58,10 @@ public class EnemyProjectileThrower : MonoBehaviour
             var projectileObject = projectilePool.GetComponent<ProjectileObject>();
             projectileObject.InitializeProjectile(shootTarget,trajectoryMaxSpeed,trajectoryMaxHeight,currentPower,host);
             projectileObject.InitializeAnimationCurve(projectileCurve,axisCorrectionProjectileCurve,speedProjectileCurve);
-            isUseDoubleAttack = true;
+            GetComponent<EnemyController>().isUsePower = true;
             GetComponent<EnemyController>().isDoubleAttackUse = true;
         }
-        else if (GameManager.instance.enemyDifficulty == EnemyDifficulty.Hard && GameManager.instance.CurrentWindForce > 2f && isUsePowerAttack == false)
+        if (GetComponent<EnemyController>().enemyPower == PowerList.PowerThrow && GameManager.instance.CurrentWindForce > 2f && GetComponent<EnemyController>().isUsePower == false)
         {
             currentPower = PowerList.PowerThrow;
             GameObject projectilePool = ProjectilePooling.instance.GetPoopsPowerProjectile();
@@ -75,7 +73,7 @@ public class EnemyProjectileThrower : MonoBehaviour
             var projectileObject = projectilePool.GetComponent<ProjectileObject>();
             projectileObject.InitializeProjectile(shootTarget,trajectoryMaxSpeed,trajectoryMaxHeight,currentPower,host);
             projectileObject.InitializeAnimationCurve(projectileCurve,axisCorrectionProjectileCurve,speedProjectileCurve);
-            isUsePowerAttack = true;
+            GetComponent<EnemyController>().isUsePower = true;
         }
         else
         {

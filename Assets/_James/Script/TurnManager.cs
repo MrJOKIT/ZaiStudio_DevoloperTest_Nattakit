@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using _James.Script.GoogleSheet;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,7 +25,7 @@ public class TurnManager : MonoBehaviour
     [Space(20)] 
     [Header("Turn Timer")] 
     public TimerState timerState = TimerState.Stopped;
-    public GameSettingData gameSettingData;
+    public DataBase dataBase;
     [SerializeField] private float timeToThink = 30f;
     [SerializeField] private float timeToWarning = 10f;
     private float timeCounter;
@@ -34,8 +36,8 @@ public class TurnManager : MonoBehaviour
 
     private void Awake()
     {
-        timeToThink = gameSettingData.timeToThink;
-        timeToWarning = gameSettingData.timeToWarning;
+        timeToThink = dataBase.Content.SettingData.First(x=> x.Name == timeToThink.ToString()).Sec;
+        timeToWarning = dataBase.Content.SettingData.First(x=> x.Name == timeToWarning.ToString()).Sec;
     }
 
     private void Start()

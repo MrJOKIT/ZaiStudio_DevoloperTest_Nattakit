@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using _James.Script.GoogleSheet;
 using Spine.Unity;
 using UnityEngine;
 using UnityEngine.UI;
@@ -34,11 +35,11 @@ public class PlayerController : MonoBehaviour,IUnit
     
     public float PlayerHealth {get{return playerHealth;}}
     
-    private void Awake()
+
+    public void InitializePlayer(float playerMaxHealth, float healPoint)
     {
-        playerMaxHealth = playerData.playerHealth;
-        healPoint = playerData.heal;
-        
+        this.playerMaxHealth = playerMaxHealth;
+        this.healPoint = healPoint;
         
         projectileThrow = GetComponent<ProjectileThrow>();
         playerHealth = playerMaxHealth;
@@ -104,6 +105,10 @@ public class PlayerController : MonoBehaviour,IUnit
     public void PlayHitAnimation()
     {
         skeletonAnimation.AnimationState.SetAnimation(0, "Happy Friendly", true);
+        if (GameManager.instance.IsGameOver)
+        {
+            return;
+        }
         StartCoroutine(EndTurnDelay());
     }
 

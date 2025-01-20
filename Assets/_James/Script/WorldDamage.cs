@@ -1,11 +1,20 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using _James.Script.GoogleSheet;
 using UnityEngine;
 
+public enum AttackType
+{
+    NormalAttack,
+    SmallAttack,
+    PowerThrow,
+    DoubleAttack,
+}
 public class WorldDamage : MonoBehaviour
 {
-    public DamageData damageData;
+    public DataBase dataBase;
     
     [SerializeField] private float smallDamage = 5;
     [SerializeField] private float normalDamage = 8;
@@ -14,10 +23,11 @@ public class WorldDamage : MonoBehaviour
 
     private void Awake()
     {
-        smallDamage = damageData.smallDamage;
-        normalDamage = damageData.normalDamage;
-        powerDamage = damageData.powerDamage;
-        doubleDamage = damageData.doubleDamage;
+        var data = dataBase.Content.DamageData;
+        smallDamage = data.First(x => x.Name == AttackType.SmallAttack).Damage;
+        normalDamage = data.First(x => x.Name == AttackType.NormalAttack).Damage;
+        powerDamage = data.First(x => x.Name == AttackType.PowerThrow).Damage;
+        doubleDamage = data.First(x => x.Name == AttackType.DoubleAttack).Damage;
     }
 
     public float GetSmallDamage() { return smallDamage; }
