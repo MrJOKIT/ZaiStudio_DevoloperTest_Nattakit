@@ -4,13 +4,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+public enum EnemyAttackType
+{
+    Normal,
+    Perfect,
+    Double,
+}
 public class EnemyProjectileThrower : MonoBehaviour
 {
     [Header("Projectile Settings")]
     public GameObject projectile;
+    public GameObject projectilePower;
     public Transform shootPoint;
     public Transform shootTarget;
-    private Vector3 startTarget;
     [Header("Trajectory Settings")] 
     public float trajectoryMaxSpeed = 10f;
     public float trajectoryMaxHeight = 0.5f;
@@ -23,31 +29,50 @@ public class EnemyProjectileThrower : MonoBehaviour
     [Space(10)] 
     [SerializeField] private Vector2 startPerfectAttackPoint;
     [SerializeField] private Vector2 endPerfectAttackPoint;
+    public bool isUsePowerAttack;
+    public bool isUseDoubleAttack;
     
-
-    private void Awake()
-    {
-        startTarget = shootTarget.position;
-    }
     
-    public void ResetTarget()
+    
+    public void EnemyFireProjectile(IUnit host,EnemyAttackType enemyAttackType)
     {
-        shootTarget.position = startTarget;
-    }
-    public void EnemyFireProjectile(IUnit host,bool success)
-    {
-        if (success)
+        if (enemyAttackType == EnemyAttackType.Perfect)
         {
             shootTarget.position = new Vector3(Random.Range(startPerfectAttackPoint.x,endPerfectAttackPoint.x), shootTarget.position.y,0);
         }
-        else
+        else if (enemyAttackType == EnemyAttackType.Normal)
         {
             shootTarget.position = new Vector3(Random.Range(startAttackPoint.x,endAttackPoint.x), shootTarget.position.y,0);
         }
-        
-        var projectileObject = Instantiate(projectile, shootPoint.position, shootPoint.rotation).GetComponent<ProjectileObject>();
-        projectileObject.InitializeProjectile(shootTarget,trajectoryMaxSpeed,trajectoryMaxHeight,currentPower,host);
-        projectileObject.InitializeAnimationCurve(projectileCurve,axisCorrectionProjectileCurve,speedProjectileCurve);
+        else if (enemyAttackType == EnemyAttackType.Double)
+        {
+            shootTarget.position = new Vector3(shootTarget.position.x, shootTarget.position.y,0);
+        }
+
+        if (GameManager.instance.enemyDifficulty == EnemyDifficulty.Normal && GameManager.instance.CurrentWindForce < 0.5f && isUseDoubleAttack == false)
+        {
+            // double attack
+            currentPower = PowerList.DoubleAttack;
+            var projectileObject = Instantiate(projectile, shootPoint.position, shootPoint.rotation).GetComponent<ProjectileObject>();
+            projectileObject.InitializeProjectile(shootTarget,trajectoryMaxSpeed,trajectoryMaxHeight,currentPower,host);
+            projectileObject.InitializeAnimationCurve(projectileCurve,axisCorrectionProjectileCurve,speedProjectileCurve);
+            isUseDoubleAttack = true;
+            GetComponent<EnemyController>().isDoubleAttackUse = true;
+        }
+        else if (GameManager.instance.enemyDifficulty == EnemyDifficulty.Hard && GameManager.instance.CurrentWindForce > 2f && isUsePowerAttack == false)
+        {
+            currentPower = PowerList.PowerThrow;
+            var projectileObject = Instantiate(projectilePower, shootPoint.position, shootPoint.rotation).GetComponent<ProjectileObject>();
+            projectileObject.InitializeProjectile(shootTarget,trajectoryMaxSpeed,trajectoryMaxHeight,currentPower,host);
+            projectileObject.InitializeAnimationCurve(projectileCurve,axisCorrectionProjectileCurve,speedProjectileCurve);
+            isUsePowerAttack = true;
+        }
+        else
+        {
+            var projectileObject = Instantiate(projectile, shootPoint.position, shootPoint.rotation).GetComponent<ProjectileObject>();
+            projectileObject.InitializeProjectile(shootTarget,trajectoryMaxSpeed,trajectoryMaxHeight,currentPower,host);
+            projectileObject.InitializeAnimationCurve(projectileCurve,axisCorrectionProjectileCurve,speedProjectileCurve);
+        }
         
         GameManager.instance.GetComponent<TurnManager>().StopTimer();
     }

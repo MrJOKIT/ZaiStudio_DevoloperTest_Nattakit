@@ -73,6 +73,19 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
         }
+    }
+    private void Start()
+    {
+        if (GameModeManager.instance != null)
+        {
+            gameMode = GameModeManager.instance.gameMode;
+            enemyDifficulty = GameModeManager.instance.enemyDifficulty;
+        }
+        else
+        {
+            gameMode = GameMode.PVE;
+            enemyDifficulty = EnemyDifficulty.Hard;
+        }
         
         SetUpGame();
     }

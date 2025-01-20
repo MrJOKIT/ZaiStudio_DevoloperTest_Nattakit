@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Spine.Unity;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,6 +27,9 @@ public class PlayerController : MonoBehaviour,IUnit
     public Image healthBar;
     public bool onMouseOver;
     
+    [Header("Animation")]
+    public SkeletonAnimation skeletonAnimation;
+    
     private void Awake()
     {
         projectileThrow = GetComponent<ProjectileThrow>();
@@ -37,7 +41,7 @@ public class PlayerController : MonoBehaviour,IUnit
     {
         GetComponent<Collider2D>().enabled = currentPlayerNumber == GameManager.instance.GetComponent<TurnManager>().playerTurnState;
         
-        if (GetComponent<GameManager>().IsGameOver)
+        if (GameManager.instance.IsGameOver)
         {
             return;
         }
@@ -72,7 +76,7 @@ public class PlayerController : MonoBehaviour,IUnit
     public void EndTurn()
     {
         playerCanvas.SetActive(false);
-        
+        skeletonAnimation.AnimationState.SetAnimation(0, "Idle Friendly 1", true);
         if (GetComponent<ProjectileThrow>().currentPower == PowerList.DoubleAttack)
         {
             GetComponent<ProjectileThrow>().currentPower = PowerList.None;
@@ -84,7 +88,47 @@ public class PlayerController : MonoBehaviour,IUnit
             GetComponent<ProjectileThrow>().ResetTarget();
             GameManager.instance.GetComponent<TurnManager>().EndUnitTurn();
         }
-    } 
+    }
+
+    public void PlayHitAnimation()
+    {
+        skeletonAnimation.AnimationState.SetAnimation(0, "Happy Friendly", true);
+        StartCoroutine(EndTurnDelay());
+    }
+
+    public void PlayMissAnimation()
+    {
+        skeletonAnimation.AnimationState.SetAnimation(0, "Moody Friendly", true);
+        StartCoroutine(EndTurnDelay());
+    }
+
+    public void PlayWinAnimation()
+    {
+        skeletonAnimation.AnimationState.SetAnimation(0, "Cheer Friendly", true);
+    }
+
+    public void PlayLoseAnimation()
+    {
+        skeletonAnimation.AnimationState.SetAnimation(0, "Moody UnFriendly", true);
+    }
+
+    public IEnumerator PlayHurtAnimation()
+    {
+        skeletonAnimation.AnimationState.SetAnimation(0, "Moody UnFriendly", true);
+        yield return new WaitForSeconds(2f);
+        skeletonAnimation.AnimationState.SetAnimation(0, "Idle Friendly 1", true);
+    }
+
+    public void PlayDogeAnimation()
+    {
+        skeletonAnimation.AnimationState.SetAnimation(0, "Sleep Friendly", true);
+        StartCoroutine(EndTurnDelay());
+    }
+    IEnumerator EndTurnDelay()
+    {
+        yield return new WaitForSeconds(2);
+        EndTurn();
+    }
 
     public void TakeDamage(float damage)
     {
@@ -93,6 +137,10 @@ public class PlayerController : MonoBehaviour,IUnit
         {
             playerHealth = 0;
             GameManager.instance.GameOver();
+        }
+        else
+        {
+            StartCoroutine(PlayHurtAnimation());
         }
         UpdateHealthUI();
     }
@@ -120,4 +168,6 @@ public class PlayerController : MonoBehaviour,IUnit
     {
         onMouseOver = false;
     }
+
+    
 }

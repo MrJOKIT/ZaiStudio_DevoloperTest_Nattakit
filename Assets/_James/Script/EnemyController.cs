@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Spine.Unity;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -16,8 +17,10 @@ public class EnemyController : MonoBehaviour, IUnit
 
     [Header("Enemy Setting")] 
     [Range(0,100f)][SerializeField] private float missChance = 50f;
+    public bool isDoubleAttackUse;
     [Header("Enemy UI")]
     public Image healthBar;
+    public SkeletonAnimation skeletonAnimation;
     
 
     private void Start()
@@ -39,8 +42,58 @@ public class EnemyController : MonoBehaviour, IUnit
 
     public void EndTurn()
     {
-        GetComponent<EnemyProjectileThrower>().ResetTarget();
-        GameManager.instance.GetComponent<TurnManager>().EndUnitTurn();
+        skeletonAnimation.AnimationState.SetAnimation(0, "Idle Friendly 1", true);
+        if (isDoubleAttackUse)
+        {
+            GetComponent<EnemyProjectileThrower>().EnemyFireProjectile(this,EnemyAttackType.Double);
+            isDoubleAttackUse = false;
+        }
+        else
+        {
+            GameManager.instance.GetComponent<TurnManager>().EndUnitTurn();
+        }
+        
+    }
+
+    public void PlayHitAnimation()
+    {
+        skeletonAnimation.AnimationState.SetAnimation(0, "Happy Friendly", true);
+        StartCoroutine(EndTurnDelay());
+    }
+
+    public void PlayMissAnimation()
+    {
+        skeletonAnimation.AnimationState.SetAnimation(0, "Moody Friendly", true);
+        StartCoroutine(EndTurnDelay());
+    }
+
+    public void PlayWinAnimation()
+    {
+        skeletonAnimation.AnimationState.SetAnimation(0, "Cheer Friendly", true);
+    }
+
+    public void PlayLoseAnimation()
+    {
+        skeletonAnimation.AnimationState.SetAnimation(0, "Moody UnFriendly", true);
+    }
+
+    public IEnumerator PlayHurtAnimation()
+    {
+        skeletonAnimation.AnimationState.SetAnimation(0, "Moody UnFriendly", true);
+        yield return new WaitForSeconds(2f);
+        skeletonAnimation.AnimationState.SetAnimation(0, "Idle Friendly 1", true);
+    }
+
+    public void PlayDogeAnimation()
+    {
+        skeletonAnimation.AnimationState.SetAnimation(0, "Sleep Friendly", true);
+        StartCoroutine(EndTurnDelay());
+    }
+    
+    IEnumerator EndTurnDelay()
+    {
+        yield return new WaitForSeconds(2);
+        EndTurn();
     }
 
     private void ShootPlayer()
@@ -49,12 +102,12 @@ public class EnemyController : MonoBehaviour, IUnit
         if (randomNumber >= missChance)
         {
             //Miss Attack
-            GetComponent<EnemyProjectileThrower>().EnemyFireProjectile(this,false);
+            GetComponent<EnemyProjectileThrower>().EnemyFireProjectile(this,EnemyAttackType.Normal);
         }
         else
         {
             //Success Attack
-            GetComponent<EnemyProjectileThrower>().EnemyFireProjectile(this,true);
+            GetComponent<EnemyProjectileThrower>().EnemyFireProjectile(this,EnemyAttackType.Perfect);
         }
     }
     
@@ -69,6 +122,10 @@ public class EnemyController : MonoBehaviour, IUnit
         {
             enemyHealth = 0;
             GameManager.instance.GameOver();
+        }
+        else
+        {
+            StartCoroutine(PlayHurtAnimation());
         }
         UpdateHealthUI();
     }
