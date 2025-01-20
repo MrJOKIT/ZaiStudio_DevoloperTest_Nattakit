@@ -2314,8 +2314,10 @@ MonoBehaviour:
   currentPlayerNumber: 1
   shootState: 0
   playerCanvas: {fileID: 868204705}
+  playerData: {fileID: 11400000, guid: 056b68135c686604dbd6a2286ee4a2bc, type: 2}
   playerHealth: 0
   playerMaxHealth: 50
+  healPoint: 0
   healthBar: {fileID: 431788256}
   onMouseOver: 0
   skeletonAnimation: {fileID: 2000469399}
@@ -4244,6 +4246,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTurnState: 0
   timerState: 0
+  gameSettingData: {fileID: 11400000, guid: 6201d5ddbcd0f524eaf34aa88280b41a, type: 2}
   timeToThink: 30
   timeToWarning: 10
   timerWarningUIOne: {fileID: 573952427}
@@ -4308,6 +4311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1fbf2369495cfd46a095bcb369e7f36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageData: {fileID: 11400000, guid: 9d5efe96a351ca346b7d295b9db17660, type: 2}
   smallDamage: 5
   normalDamage: 8
   powerDamage: 10
@@ -5327,8 +5331,10 @@ MonoBehaviour:
   currentPlayerNumber: 0
   shootState: 0
   playerCanvas: {fileID: 236268170}
+  playerData: {fileID: 11400000, guid: 056b68135c686604dbd6a2286ee4a2bc, type: 2}
   playerHealth: 0
   playerMaxHealth: 50
+  healPoint: 0
   healthBar: {fileID: 322324590}
   onMouseOver: 0
   skeletonAnimation: {fileID: 1834843671}

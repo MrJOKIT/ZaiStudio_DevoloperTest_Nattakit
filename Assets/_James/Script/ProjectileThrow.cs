@@ -194,7 +194,7 @@ public class ProjectileThrow : MonoBehaviour
         {
             return;
         }
-        GetComponent<PlayerController>().TakeHeal(20);
+        GetComponent<PlayerController>().TakeHeal();
         GetComponent<IUnit>().EndTurn();
         healButton.SetActive(false);
     }

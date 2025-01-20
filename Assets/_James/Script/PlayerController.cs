@@ -22,8 +22,10 @@ public class PlayerController : MonoBehaviour,IUnit
 
     [Space(20)] 
     [Header("Player Status")] 
+    public PlayerData playerData;
     [SerializeField] private float playerHealth;
     [SerializeField] private float playerMaxHealth = 50f;
+    [SerializeField] private float healPoint;
     public Image healthBar;
     public bool onMouseOver;
     
@@ -34,6 +36,10 @@ public class PlayerController : MonoBehaviour,IUnit
     
     private void Awake()
     {
+        playerMaxHealth = playerData.playerHealth;
+        healPoint = playerData.heal;
+        
+        
         projectileThrow = GetComponent<ProjectileThrow>();
         playerHealth = playerMaxHealth;
         UpdateHealthUI();
@@ -151,9 +157,9 @@ public class PlayerController : MonoBehaviour,IUnit
         UpdateHealthUI();
     }
 
-    public void TakeHeal(float heal)
+    public void TakeHeal()
     {
-        playerHealth += heal;
+        playerHealth += healPoint;
         if (playerHealth > playerMaxHealth)
         {
             playerHealth = playerMaxHealth;

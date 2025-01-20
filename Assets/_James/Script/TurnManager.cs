@@ -23,6 +23,7 @@ public class TurnManager : MonoBehaviour
     [Space(20)] 
     [Header("Turn Timer")] 
     public TimerState timerState = TimerState.Stopped;
+    public GameSettingData gameSettingData;
     [SerializeField] private float timeToThink = 30f;
     [SerializeField] private float timeToWarning = 10f;
     private float timeCounter;
@@ -30,6 +31,13 @@ public class TurnManager : MonoBehaviour
     [SerializeField] private GameObject timerWarningUITwo;
     [SerializeField] private Image timerImageOne;
     [SerializeField] private Image timerImageTwo;
+
+    private void Awake()
+    {
+        timeToThink = gameSettingData.timeToThink;
+        timeToWarning = gameSettingData.timeToWarning;
+    }
+
     private void Start()
     {
         StartUnitTurn();
