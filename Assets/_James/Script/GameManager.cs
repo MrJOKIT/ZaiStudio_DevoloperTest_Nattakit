@@ -180,5 +180,27 @@ public class GameManager : MonoBehaviour
     {
         gameOverPanel.SetActive(true);
         isGameOver = true;
+        if (GameMode == GameMode.PVE)
+        {
+            if (playerOne.GetComponent<PlayerController>().PlayerHealth > 0)
+            {
+                playerOne.GetComponent<PlayerController>().PlayWinAnimation();
+            }
+            else if (enemy.GetComponent<EnemyController>().EnemyHealth > 0)
+            {
+                enemy.GetComponent<EnemyController>().PlayWinAnimation();
+            }
+        }
+        else
+        {
+            if (playerOne.GetComponent<PlayerController>().PlayerHealth > 0)
+            {
+                playerOne.GetComponent<PlayerController>().PlayWinAnimation();
+            }
+            else if ( playerTwo.GetComponent<PlayerController>().PlayerHealth > 0)
+            {
+                playerTwo.GetComponent<PlayerController>().PlayWinAnimation();
+            }
+        }
     }
 }

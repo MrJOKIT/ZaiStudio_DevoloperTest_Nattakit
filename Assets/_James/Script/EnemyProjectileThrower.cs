@@ -13,8 +13,6 @@ public enum EnemyAttackType
 public class EnemyProjectileThrower : MonoBehaviour
 {
     [Header("Projectile Settings")]
-    public GameObject projectile;
-    public GameObject projectilePower;
     public Transform shootPoint;
     public Transform shootTarget;
     [Header("Trajectory Settings")] 
@@ -53,7 +51,13 @@ public class EnemyProjectileThrower : MonoBehaviour
         {
             // double attack
             currentPower = PowerList.DoubleAttack;
-            var projectileObject = Instantiate(projectile, shootPoint.position, shootPoint.rotation).GetComponent<ProjectileObject>();
+            GameObject projectilePool = ProjectilePooling.instance.GetPoopsProjectile();
+            if (projectilePool != null) {
+                projectilePool.transform.position = shootPoint.transform.position;
+                projectilePool.transform.rotation = shootPoint.transform.rotation;
+                projectilePool.SetActive(true);
+            }
+            var projectileObject = projectilePool.GetComponent<ProjectileObject>();
             projectileObject.InitializeProjectile(shootTarget,trajectoryMaxSpeed,trajectoryMaxHeight,currentPower,host);
             projectileObject.InitializeAnimationCurve(projectileCurve,axisCorrectionProjectileCurve,speedProjectileCurve);
             isUseDoubleAttack = true;
@@ -62,14 +66,26 @@ public class EnemyProjectileThrower : MonoBehaviour
         else if (GameManager.instance.enemyDifficulty == EnemyDifficulty.Hard && GameManager.instance.CurrentWindForce > 2f && isUsePowerAttack == false)
         {
             currentPower = PowerList.PowerThrow;
-            var projectileObject = Instantiate(projectilePower, shootPoint.position, shootPoint.rotation).GetComponent<ProjectileObject>();
+            GameObject projectilePool = ProjectilePooling.instance.GetPoopsPowerProjectile();
+            if (projectilePool != null) {
+                projectilePool.transform.position = shootPoint.transform.position;
+                projectilePool.transform.rotation = shootPoint.transform.rotation;
+                projectilePool.SetActive(true);
+            }
+            var projectileObject = projectilePool.GetComponent<ProjectileObject>();
             projectileObject.InitializeProjectile(shootTarget,trajectoryMaxSpeed,trajectoryMaxHeight,currentPower,host);
             projectileObject.InitializeAnimationCurve(projectileCurve,axisCorrectionProjectileCurve,speedProjectileCurve);
             isUsePowerAttack = true;
         }
         else
         {
-            var projectileObject = Instantiate(projectile, shootPoint.position, shootPoint.rotation).GetComponent<ProjectileObject>();
+            GameObject projectilePool = ProjectilePooling.instance.GetPoopsProjectile();
+            if (projectilePool != null) {
+                projectilePool.transform.position = shootPoint.transform.position;
+                projectilePool.transform.rotation = shootPoint.transform.rotation;
+                projectilePool.SetActive(true);
+            }
+            var projectileObject = projectilePool.GetComponent<ProjectileObject>();
             projectileObject.InitializeProjectile(shootTarget,trajectoryMaxSpeed,trajectoryMaxHeight,currentPower,host);
             projectileObject.InitializeAnimationCurve(projectileCurve,axisCorrectionProjectileCurve,speedProjectileCurve);
         }

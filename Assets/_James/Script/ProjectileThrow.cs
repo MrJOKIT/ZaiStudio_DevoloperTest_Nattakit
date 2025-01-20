@@ -23,8 +23,6 @@ public class ProjectileThrow : MonoBehaviour
     public ShootSide shootSide;
     public Transform shootPoint;
     public Transform shootTarget;
-    public GameObject projectile;
-    public GameObject powerProjectile;
     private Vector3 startTarget;
     [Space(20)]
     [Header("Projectile Setting")]
@@ -108,16 +106,58 @@ public class ProjectileThrow : MonoBehaviour
         
         if (currentPower == PowerList.PowerThrow)
         {
-            var projectileObject = Instantiate(powerProjectile, shootPoint.position, shootPoint.rotation).GetComponent<ProjectileObject>();
-            projectileObject.InitializeProjectile(shootTarget,trajectoryMaxSpeed,trajectoryMaxHeight,currentPower,host);
-            projectileObject.InitializeAnimationCurve(projectileCurve,axisCorrectionProjectileCurve,speedProjectileCurve);
+            if (GetComponent<PlayerController>().currentPlayerNumber == PlayerNumber.Player1)
+            {
+                GameObject projectilePool = ProjectilePooling.instance.GetBonePowerProjectile();
+                if (projectilePool != null) {
+                    projectilePool.transform.position = shootPoint.transform.position;
+                    projectilePool.transform.rotation = shootPoint.transform.rotation;
+                    projectilePool.SetActive(true);
+                }
+                ProjectileObject projectileObject = projectilePool.GetComponent<ProjectileObject>();
+                projectileObject.InitializeProjectile(shootTarget,trajectoryMaxSpeed,trajectoryMaxHeight,currentPower,host);
+                projectileObject.InitializeAnimationCurve(projectileCurve,axisCorrectionProjectileCurve,speedProjectileCurve);
+            }
+            else
+            {
+                GameObject projectilePool = ProjectilePooling.instance.GetPoopsPowerProjectile();
+                if (projectilePool != null) {
+                    projectilePool.transform.position = shootPoint.transform.position;
+                    projectilePool.transform.rotation = shootPoint.transform.rotation;
+                    projectilePool.SetActive(true);
+                }
+                ProjectileObject projectileObject = projectilePool.GetComponent<ProjectileObject>();
+                projectileObject.InitializeProjectile(shootTarget,trajectoryMaxSpeed,trajectoryMaxHeight,currentPower,host);
+                projectileObject.InitializeAnimationCurve(projectileCurve,axisCorrectionProjectileCurve,speedProjectileCurve);
+            }
+            
         }
         else
         {
-            var projectileObject = Instantiate(projectile, shootPoint.position, shootPoint.rotation).GetComponent<ProjectileObject>();
-            projectileObject.InitializeProjectile(shootTarget,trajectoryMaxSpeed,trajectoryMaxHeight,currentPower,host);
-            projectileObject.InitializeAnimationCurve(projectileCurve,axisCorrectionProjectileCurve,speedProjectileCurve);
-            
+            if (GetComponent<PlayerController>().currentPlayerNumber == PlayerNumber.Player1)
+            {
+                GameObject projectilePool = ProjectilePooling.instance.GetBoneProjectile();
+                if (projectilePool != null) {
+                    projectilePool.transform.position = shootPoint.transform.position;
+                    projectilePool.transform.rotation = shootPoint.transform.rotation;
+                    projectilePool.SetActive(true);
+                }
+                ProjectileObject projectileObject = projectilePool.GetComponent<ProjectileObject>();
+                projectileObject.InitializeProjectile(shootTarget,trajectoryMaxSpeed,trajectoryMaxHeight,currentPower,host);
+                projectileObject.InitializeAnimationCurve(projectileCurve,axisCorrectionProjectileCurve,speedProjectileCurve);
+            }
+            else
+            {
+                GameObject projectilePool = ProjectilePooling.instance.GetPoopsProjectile();
+                if (projectilePool != null) {
+                    projectilePool.transform.position = shootPoint.transform.position;
+                    projectilePool.transform.rotation = shootPoint.transform.rotation;
+                    projectilePool.SetActive(true);
+                }
+                ProjectileObject projectileObject = projectilePool.GetComponent<ProjectileObject>();
+                projectileObject.InitializeProjectile(shootTarget,trajectoryMaxSpeed,trajectoryMaxHeight,currentPower,host);
+                projectileObject.InitializeAnimationCurve(projectileCurve,axisCorrectionProjectileCurve,speedProjectileCurve);
+            }
         }
 
         if (currentPower != PowerList.DoubleAttack)

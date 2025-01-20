@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class ScreenShot : MonoBehaviour
 {
+    [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject sharePanel;
     [SerializeField] private TextMeshProUGUI winText;
     [SerializeField] private TextMeshProUGUI dateText;
@@ -16,6 +17,7 @@ public class ScreenShot : MonoBehaviour
         winText.text = "TEST WIN"; //show who win
         DateTime dateTime = DateTime.Now;
         dateText.text = string.Format("{0}/{1}/{2}",dateTime.Day,dateTime.Month,dateTime.Year);
+        gameOverPanel.SetActive(false);
         sharePanel.SetActive(true);
         StartCoroutine(TakeScreenShot());
     }
@@ -34,5 +36,6 @@ public class ScreenShot : MonoBehaviour
         
         new NativeShare().AddFile(path).SetSubject("This is my win").SetText("Share screen to someone").Share();
         sharePanel.SetActive(false);
+        gameOverPanel.SetActive(true);
     }
 }

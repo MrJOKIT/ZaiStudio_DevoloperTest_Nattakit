@@ -22,6 +22,11 @@ public class EnemyController : MonoBehaviour, IUnit
     public Image healthBar;
     public SkeletonAnimation skeletonAnimation;
     
+    public float EnemyHealth
+    {
+        get { return enemyHealth; }
+    }
+    
 
     private void Start()
     {
@@ -39,6 +44,7 @@ public class EnemyController : MonoBehaviour, IUnit
     {
         ShootPlayer();
     }
+    
 
     public void EndTurn()
     {
@@ -121,6 +127,7 @@ public class EnemyController : MonoBehaviour, IUnit
         if (enemyHealth <= 0)
         {
             enemyHealth = 0;
+            PlayLoseAnimation();
             GameManager.instance.GameOver();
         }
         else

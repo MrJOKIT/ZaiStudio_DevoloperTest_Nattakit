@@ -2389,8 +2389,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1812945987}
-        m_TargetAssemblyTypeName: GoogleAuthentication, Assembly-CSharp
-        m_MethodName: OnGuestSignIn
+        m_TargetAssemblyTypeName: GuestLogin, Assembly-CSharp
+        m_MethodName: GuestSignIn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4624,7 +4624,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1812945987}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GoogleAuthentication, Assembly-CSharp
         m_MethodName: OnSignIn
         m_Mode: 1
@@ -4831,13 +4831,13 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Click and Hold Mouse Button on their turn
 
-    Power Meter increases
-    until released
+    Power Meter increases until
+    released
 
     Watch Wind Meter to measure throw
 
-    Release Mouse Button
-    to throw items
+    Release Mouse Button to
+    throw items
 
     Watch The Time Limit or skip a turn'
   m_isRightToLeft: 0
@@ -4957,18 +4957,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1812945983}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76535b9b833ed4742b3f6d84bd349203, type: 3}
+  m_Script: {fileID: 11500000, guid: 79c4d6dfd6432d0429f205cced2522eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  imageURL: 
-  webClientID: 126837788588-75nohqgudivl5cmbgpc6dqpmot2uvorh.apps.googleusercontent.com
-  userNameText: {fileID: 1513578239}
-  profileImage: {fileID: 335003431}
-  loginPanel: {fileID: 1127581835}
-  profilePanel: {fileID: 204418033}
+  playerImage: {fileID: 335003431}
+  guestSprite: {fileID: 21300000, guid: 0f05fafecb4346046ba8cfd785e50567, type: 3}
+  guestName: {fileID: 1513578239}
   menuPanel: {fileID: 1534354813}
-  guestName: GUEST
-  guestProfileImage: {fileID: 21300000, guid: 0f05fafecb4346046ba8cfd785e50567, type: 3}
+  loginPanel: {fileID: 1127581835}
 --- !u!1 &1816276307
 GameObject:
   m_ObjectHideFlags: 0

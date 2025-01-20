@@ -138,7 +138,7 @@ public class ProjectileObject : MonoBehaviour
             }
             Debug.Log("Head");
             host.PlayHitAnimation();
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
         else if (other.gameObject.CompareTag("Body"))
         {
@@ -177,12 +177,12 @@ public class ProjectileObject : MonoBehaviour
             } 
             Debug.Log("Body"); 
             host.PlayHitAnimation();
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
         else if (other.gameObject.CompareTag("Ground"))
         {
             host.PlayMissAnimation();
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

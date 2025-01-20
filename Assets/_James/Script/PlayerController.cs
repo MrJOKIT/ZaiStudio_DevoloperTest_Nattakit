@@ -30,6 +30,8 @@ public class PlayerController : MonoBehaviour,IUnit
     [Header("Animation")]
     public SkeletonAnimation skeletonAnimation;
     
+    public float PlayerHealth {get{return playerHealth;}}
+    
     private void Awake()
     {
         projectileThrow = GetComponent<ProjectileThrow>();
@@ -39,8 +41,6 @@ public class PlayerController : MonoBehaviour,IUnit
 
     private void Update()
     {
-        GetComponent<Collider2D>().enabled = currentPlayerNumber == GameManager.instance.GetComponent<TurnManager>().playerTurnState;
-        
         if (GameManager.instance.IsGameOver)
         {
             return;
@@ -66,7 +66,12 @@ public class PlayerController : MonoBehaviour,IUnit
             shootState = ShootState.ShootSuccess;
         }
     }
-    
+
+    private void FixedUpdate()
+    {
+        GetComponent<Collider2D>().enabled = currentPlayerNumber == GameManager.instance.GetComponent<TurnManager>().playerTurnState;
+    }
+
     public void StartTurn()
     {
         shootState = ShootState.PrepareShoot;
@@ -136,6 +141,7 @@ public class PlayerController : MonoBehaviour,IUnit
         if (playerHealth <= 0)
         {
             playerHealth = 0;
+            PlayLoseAnimation();
             GameManager.instance.GameOver();
         }
         else
