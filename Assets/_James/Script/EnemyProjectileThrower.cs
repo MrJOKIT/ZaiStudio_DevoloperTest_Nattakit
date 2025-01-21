@@ -54,6 +54,8 @@ public class EnemyProjectileThrower : MonoBehaviour
         {
             // double attack
             currentPower = PowerList.DoubleAttack;
+            GetComponent<EnemyController>().isUsePower = true;
+            GetComponent<EnemyController>().isDoubleAttackUse = true;
             GameObject projectilePool = ProjectilePooling.instance.GetPoopsProjectile();
             if (projectilePool != null) {
                 projectilePool.transform.position = shootPoint.transform.position;
@@ -63,8 +65,6 @@ public class EnemyProjectileThrower : MonoBehaviour
             var projectileObject = projectilePool.GetComponent<ProjectileObject>();
             projectileObject.InitializeProjectile(shootTarget,trajectoryMaxSpeed,trajectoryMaxHeight,currentPower,host);
             projectileObject.InitializeAnimationCurve(projectileCurve,axisCorrectionProjectileCurve,speedProjectileCurve);
-            GetComponent<EnemyController>().isUsePower = true;
-            GetComponent<EnemyController>().isDoubleAttackUse = true;
         }
         if (GetComponent<EnemyController>().enemyPower == PowerList.PowerThrow && GameManager.instance.CurrentWindForce > 2f && GetComponent<EnemyController>().isUsePower == false)
         {
