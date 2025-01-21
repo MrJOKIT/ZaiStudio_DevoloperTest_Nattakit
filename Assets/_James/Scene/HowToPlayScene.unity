@@ -3928,7 +3928,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1812945986}
-  - component: {fileID: 1812945987}
   m_Layer: 0
   m_Name: GameAuthentication
   m_TagString: Untagged
@@ -3951,27 +3950,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1812945987
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1812945983}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76535b9b833ed4742b3f6d84bd349203, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  imageURL: 
-  webClientID: 126837788588-75nohqgudivl5cmbgpc6dqpmot2uvorh.apps.googleusercontent.com
-  userNameText: {fileID: 1513578239}
-  profileImage: {fileID: 335003431}
-  loginPanel: {fileID: 0}
-  profilePanel: {fileID: 204418033}
-  menuPanel: {fileID: 0}
-  guestName: GUEST
-  guestProfileImage: {fileID: 21300000, guid: 0f05fafecb4346046ba8cfd785e50567, type: 3}
 --- !u!1 &1816276307
 GameObject:
   m_ObjectHideFlags: 0

@@ -57,6 +57,6 @@ MonoBehaviour:
       Damage: 5
     SettingData:
     - Name: Time to think
-      Sec: 0
+      Sec: 30
     - Name: Time to Warning
-      Sec: 0
+      Sec: 10
