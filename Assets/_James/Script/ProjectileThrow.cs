@@ -103,6 +103,10 @@ public class ProjectileThrow : MonoBehaviour
     }
     public void FireProjectile(IUnit host)
     {
+        if (SoundManager.instance != null)
+        {
+            SoundManager.instance.PlaySound(SoundName.PlayerThrow);
+        }
         
         if (currentPower == PowerList.PowerThrow)
         {

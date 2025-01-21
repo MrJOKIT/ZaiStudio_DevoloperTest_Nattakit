@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -12,8 +13,12 @@ public class GuestLogin : MonoBehaviour
 
     public GameObject menuPanel;
     public GameObject loginPanel;
+    
+
     public void GuestSignIn()
     {
+        SoundManager.instance.PlaySound(SoundName.ClickUI);
+        
         playerImage.sprite = guestSprite;
         guestName.text = "GUEST";
         

@@ -148,6 +148,11 @@ public class PlayerController : MonoBehaviour,IUnit
 
     public void TakeDamage(float damage)
     {
+        if (SoundManager.instance != null)
+        {
+            SoundManager.instance.PlaySound(SoundName.Hit);
+        }
+        
         playerHealth -= damage;
         if (playerHealth <= 0)
         {

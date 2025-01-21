@@ -127,6 +127,11 @@ public class EnemyController : MonoBehaviour, IUnit
     }
     public void TakeDamage(float damage)
     {
+        if (SoundManager.instance != null)
+        {
+            SoundManager.instance.PlaySound(SoundName.Hit);
+        }
+        
         enemyHealth -= damage;
         if (enemyHealth <= 0)
         {

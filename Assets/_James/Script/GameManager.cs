@@ -33,7 +33,6 @@ public class GameManager : MonoBehaviour
     [Header("Wind Force Setting")]
     [SerializeField] private float currentWindForce;
     [SerializeField] private float maxWindForce = 2.5f;
-    [SerializeField] private AreaEffector2D areaEffector2D;
     [SerializeField] private WindSide windSide;
     [Header("Wind Force UI")] 
     public GameObject leftArrow;
@@ -51,9 +50,6 @@ public class GameManager : MonoBehaviour
     public GameObject enemy;
     [Space(20)]
     public EnemyDifficulty enemyDifficulty;
-    public EnemyData easyEnemyData;
-    public EnemyData normalEnemyData;
-    public EnemyData hardEnemyData;
 
     [Space(20)] 
     [Header("Game Over Setting")]
@@ -77,6 +73,11 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
+        if (SoundManager.instance != null)
+        {
+            SoundManager.instance.PlayBGM(BGMName.BGM2);
+        }
+        
         if (GameModeManager.instance != null)
         {
             gameMode = GameModeManager.instance.gameMode;
@@ -120,7 +121,6 @@ public class GameManager : MonoBehaviour
         }
         
         windSide = WindSide.None;
-        areaEffector2D.forceMagnitude = 0;
         
         UpdateWindForceUI();
     }
@@ -179,6 +179,11 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        if (SoundManager.instance != null)
+        {
+            SoundManager.instance.PlayBGM(BGMName.BGM3);
+        }
+        
         gameOverPanel.SetActive(true);
         isGameOver = true;
         if (GameMode == GameMode.PVE)

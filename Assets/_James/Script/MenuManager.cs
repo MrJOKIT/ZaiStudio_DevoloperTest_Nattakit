@@ -1,9 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class MenuManager : MonoBehaviour
 {
+    private void Start()
+    {
+        SoundManager.instance.PlayBGM(BGMName.BGM1);
+    }
+
     public void SelectModePVP()
     {
         GameModeManager.instance.gameMode = GameMode.PVP;

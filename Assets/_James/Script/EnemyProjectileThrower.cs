@@ -32,6 +32,11 @@ public class EnemyProjectileThrower : MonoBehaviour
     
     public void EnemyFireProjectile(IUnit host,EnemyAttackType enemyAttackType)
     {
+        if (SoundManager.instance != null)
+        {
+            SoundManager.instance.PlaySound(SoundName.EnemyThrow);
+        }
+        
         if (enemyAttackType == EnemyAttackType.Perfect)
         {
             shootTarget.position = new Vector3(Random.Range(startPerfectAttackPoint.x,endPerfectAttackPoint.x), shootTarget.position.y,0);

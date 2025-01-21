@@ -10,7 +10,7 @@ public class PlayerDataInitialize : MonoBehaviour
 {
     [SerializeField] private DataBase dataBase;
     [SerializeField] private string playerName = "Player";
-    [SerializeField] private string healName = "HP";
+    [SerializeField] private string healName = "Heal";
 
     private void Awake()
     {

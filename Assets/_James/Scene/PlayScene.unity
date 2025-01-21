@@ -2412,7 +2412,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataBase: {fileID: 11400000, guid: b9d0e2d533d482948885041872f121a8, type: 2}
   playerName: Player
-  healName: HP
+  healName: Heal
 --- !u!1 &573952427
 GameObject:
   m_ObjectHideFlags: 0
@@ -4305,7 +4305,6 @@ MonoBehaviour:
   isGameOver: 0
   currentWindForce: 0
   maxWindForce: 2.5
-  areaEffector2D: {fileID: 0}
   windSide: 0
   leftArrow: {fileID: 236567783}
   rightArrow: {fileID: 1660314965}
@@ -5496,7 +5495,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataBase: {fileID: 11400000, guid: b9d0e2d533d482948885041872f121a8, type: 2}
   playerName: Player
-  healName: HP
+  healName: Heal
 --- !u!1 &1372493331
 GameObject:
   m_ObjectHideFlags: 0

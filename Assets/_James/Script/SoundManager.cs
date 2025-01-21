@@ -5,7 +5,17 @@ using UnityEngine;
 
 public enum SoundName
 {
-    
+    ClickUI,
+    PlayerThrow,
+    EnemyThrow,
+    Hit,
+}
+
+public enum BGMName
+{
+    BGM1,
+    BGM2,
+    BGM3,
 }
 [Serializable]
 public class SoundData
@@ -13,13 +23,21 @@ public class SoundData
     public SoundName soundName;
     public AudioClip audioClip;
     [Range(0,1)] public float volume;
-    public bool loop;
+}
+[Serializable]
+public class BGMData
+{
+    public BGMName bgmName;
+    public AudioClip audioClip;
+    [Range(0,1)] public float volume;
 }
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager instance;
     public AudioSource audioSource;
+    public AudioSource bgmSource;
     public List<SoundData> soundData;
+    public List<BGMData> bgmData;
 
     private void Awake()
     {
@@ -38,9 +56,17 @@ public class SoundManager : MonoBehaviour
     {
         var sound = soundData.Find(x => x.soundName == name);
         
-        audioSource.loop = sound.loop;
         audioSource.volume = sound.volume;
         audioSource.clip = sound.audioClip;
         audioSource.Play();
+    }
+
+    public void PlayBGM(BGMName name)
+    {
+        var bgm = bgmData.Find(x => x.bgmName == name);
+        
+        bgmSource.clip = bgm.audioClip;
+        bgmSource.volume = bgm.volume;
+        bgmSource.Play();
     }
 }

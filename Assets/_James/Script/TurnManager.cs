@@ -28,7 +28,7 @@ public class TurnManager : MonoBehaviour
     public DataBase dataBase;
     [SerializeField] private float timeToThink = 30f;
     [SerializeField] private float timeToWarning = 10f;
-    private float timeCounter;
+    private float timeCounter = 30f;
     [SerializeField] private GameObject timerWarningUIOne;
     [SerializeField] private GameObject timerWarningUITwo;
     [SerializeField] private Image timerImageOne;
@@ -36,8 +36,8 @@ public class TurnManager : MonoBehaviour
 
     private void Awake()
     {
-        timeToThink = dataBase.Content.SettingData.First(x=> x.Name == timeToThink.ToString()).Sec;
-        timeToWarning = dataBase.Content.SettingData.First(x=> x.Name == timeToWarning.ToString()).Sec;
+        timeToThink = dataBase.Content.SettingData.First(x=> x.Name == "Time to think").Sec;
+        timeToWarning = dataBase.Content.SettingData.First(x=> x.Name == "Time to Warning").Sec;
     }
 
     private void Start()
