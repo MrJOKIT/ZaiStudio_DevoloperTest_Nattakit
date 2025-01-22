@@ -1842,6 +1842,8 @@ MonoBehaviour:
   endAttackPoint: {x: 10, y: -1.5}
   startPerfectAttackPoint: {x: 5.5, y: -1.5}
   endPerfectAttackPoint: {x: 7.5, y: -1.5}
+  doubleAttackPoint: {x: 0, y: 0}
+  doubleAttacking: 0
 --- !u!114 &449513785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4316,7 +4318,7 @@ MonoBehaviour:
   enemy: {fileID: 449513781}
   enemyDifficulty: 0
   gameOverPanel: {fileID: 198216216}
-  winText: {fileID: 1446949411}
+  winText: {fileID: 683814809}
 --- !u!4 &1082859405
 Transform:
   m_ObjectHideFlags: 0
