@@ -8,6 +8,11 @@ public class GameModeManager : MonoBehaviour
     public static GameModeManager instance;
     public GameMode gameMode;
     public EnemyDifficulty enemyDifficulty;
+    
+    [Header("PlayerInfo")]
+    public Sprite playerSprite;
+    public string playerName;
+    public string playerId;
 
     private void Awake()
     {
@@ -20,5 +25,12 @@ public class GameModeManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void InitializePlayerInfo(string playerName, string playerId)
+    {
+        this.playerSprite = playerSprite;
+        this.playerName = playerName;
+        this.playerId = playerId;
     }
 }
