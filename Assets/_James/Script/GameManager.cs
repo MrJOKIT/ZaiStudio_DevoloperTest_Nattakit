@@ -215,4 +215,38 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
+    public string GetWinText()
+    {
+        string text = "";
+        if (GameMode == GameMode.PVE)
+        {
+            if (playerOne.GetComponent<PlayerController>().PlayerHealth > 0)
+            {
+                text = "You Win!";
+                return text;
+            }
+            else if (enemy.GetComponent<EnemyController>().EnemyHealth > 0)
+            {
+                text = "You Lose!";
+                return text;
+            }
+        }
+        else
+        {
+            if (playerOne.GetComponent<PlayerController>().PlayerHealth > 0)
+            {
+                text = "Player 1 Win!";
+                return text;
+            }
+            else if ( playerTwo.GetComponent<PlayerController>().PlayerHealth > 0)
+            {
+                text = "Player 2 Win!";
+                return text;
+            }
+
+            return text;
+        }
+        return text;
+    }
 }

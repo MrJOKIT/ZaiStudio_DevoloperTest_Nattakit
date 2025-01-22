@@ -14,7 +14,7 @@ public class ScreenShot : MonoBehaviour
 
     public void ShareScreenShot()
     {
-        winText.text = "TEST WIN"; //show who win
+        winText.text = GetComponent<GameManager>().GetWinText(); //show who win
         DateTime dateTime = DateTime.Now;
         dateText.text = string.Format("{0}/{1}/{2}",dateTime.Day,dateTime.Month,dateTime.Year);
         gameOverPanel.SetActive(false);
