@@ -12,7 +12,7 @@ public class GooglePlayGameLoginManger : MonoBehaviour
     public TextMeshProUGUI detailText;
     [Header("UI")]
     public TextMeshProUGUI nameText;
-    public TextMeshProUGUI idText;
+    //public TextMeshProUGUI idText;
     public Image profileImage;
     [Header("Panel")]
     public GameObject loginPanel;
@@ -33,13 +33,13 @@ public class GooglePlayGameLoginManger : MonoBehaviour
         if (status == SignInStatus.Success)
         {
             string name = PlayGamesPlatform.Instance.GetUserDisplayName();
-            string id = PlayGamesPlatform.Instance.GetUserId();
+            //string id = PlayGamesPlatform.Instance.GetUserId();
             string imgUrl = PlayGamesPlatform.Instance.GetUserImageUrl();
             
             nameText.text = name;
-            idText.text = "ID: " + id;
+            //idText.text = "ID: " + id;
             
-            GameModeManager.instance.InitializePlayerInfo(name, id);
+            GameModeManager.instance.InitializePlayerInfo(name);
             
             loginPanel.SetActive(false);
             menuPanel.SetActive(true);
@@ -47,12 +47,12 @@ public class GooglePlayGameLoginManger : MonoBehaviour
 
             StartCoroutine(LoadProfileImage(imgUrl));
             
-            detailText.text = "Sign In Success";
+            //detailText.text = "Sign In Success";
         }
         else
         {
             Debug.Log("SignIn Error");
-            detailText.text = "Sign In Failed";
+            //detailText.text = "Sign In Failed";
         }
     }
 
@@ -61,5 +61,7 @@ public class GooglePlayGameLoginManger : MonoBehaviour
         WWW www = new WWW(url);
         yield return www;
         profileImage.sprite = Sprite.Create(www.texture, new Rect(0, 0, www.texture.width, www.texture.height), Vector2.zero);
+        GameModeManager.instance.playerSprite = Sprite.Create(www.texture, new Rect(0, 0, www.texture.width, www.texture.height), Vector2.zero);
+        ;
     }
 }

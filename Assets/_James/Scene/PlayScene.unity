@@ -4315,22 +4315,8 @@ MonoBehaviour:
   playerTwoItemList: {fileID: 1401641482}
   enemy: {fileID: 449513781}
   enemyDifficulty: 0
-  easyEnemyData:
-    Name: 0
-    HP: 0
-    MissedChance: 0
-    PowerList: 0
-  normalEnemyData:
-    Name: 0
-    HP: 0
-    MissedChance: 0
-    PowerList: 0
-  hardEnemyData:
-    Name: 0
-    HP: 0
-    MissedChance: 0
-    PowerList: 0
   gameOverPanel: {fileID: 198216216}
+  winText: {fileID: 1446949411}
 --- !u!4 &1082859405
 Transform:
   m_ObjectHideFlags: 0

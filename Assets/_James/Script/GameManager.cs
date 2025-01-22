@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using _James.Script.GoogleSheet;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -54,6 +55,7 @@ public class GameManager : MonoBehaviour
     [Space(20)] 
     [Header("Game Over Setting")]
     public GameObject gameOverPanel;
+    public TextMeshProUGUI winText;
 
     
     //public float WindForce { get { return currentWindForce; }}
@@ -191,10 +193,12 @@ public class GameManager : MonoBehaviour
             if (playerOne.GetComponent<PlayerController>().PlayerHealth > 0)
             {
                 playerOne.GetComponent<PlayerController>().PlayWinAnimation();
+                winText.text = "You Win!";
             }
             else if (enemy.GetComponent<EnemyController>().EnemyHealth > 0)
             {
                 enemy.GetComponent<EnemyController>().PlayWinAnimation();
+                winText.text = "You Lose!";
             }
         }
         else
@@ -202,10 +206,12 @@ public class GameManager : MonoBehaviour
             if (playerOne.GetComponent<PlayerController>().PlayerHealth > 0)
             {
                 playerOne.GetComponent<PlayerController>().PlayWinAnimation();
+                winText.text = "Player 1 Win!";
             }
             else if ( playerTwo.GetComponent<PlayerController>().PlayerHealth > 0)
             {
                 playerTwo.GetComponent<PlayerController>().PlayWinAnimation();
+                winText.text = "Player 2 Win!";
             }
         }
     }

@@ -8,8 +8,9 @@ public class GameModeManager : MonoBehaviour
     public static GameModeManager instance;
     public GameMode gameMode;
     public EnemyDifficulty enemyDifficulty;
-    
-    [Header("PlayerInfo")]
+
+    [Header("PlayerInfo")] 
+    public bool haveData;
     public Sprite playerSprite;
     public string playerName;
     public string playerId;
@@ -27,10 +28,11 @@ public class GameModeManager : MonoBehaviour
         }
     }
 
-    public void InitializePlayerInfo(string playerName, string playerId)
+    public void InitializePlayerInfo(string playerName)
     {
-        this.playerSprite = playerSprite;
         this.playerName = playerName;
-        this.playerId = playerId;
+        //this.playerId = playerId;
+        
+        haveData = true;
     }
 }
