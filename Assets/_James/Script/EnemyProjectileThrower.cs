@@ -27,6 +27,8 @@ public class EnemyProjectileThrower : MonoBehaviour
     [Space(10)] 
     [SerializeField] private Vector2 startPerfectAttackPoint;
     [SerializeField] private Vector2 endPerfectAttackPoint;
+    public Vector2 doubleAttackPoint;
+    public bool doubleAttacking;
     
     
     
@@ -36,19 +38,30 @@ public class EnemyProjectileThrower : MonoBehaviour
         {
             SoundManager.instance.PlaySound(SoundName.EnemyThrow);
         }
+
+        if (doubleAttacking)
+        {
+            shootTarget.position = doubleAttackPoint;
+            doubleAttacking = false;
+        }
+        else
+        {
+            if (enemyAttackType == EnemyAttackType.Perfect)
+            {
+                shootTarget.position = new Vector3(Random.Range(startPerfectAttackPoint.x,endPerfectAttackPoint.x), shootTarget.position.y,0);
+            }
+            else if (enemyAttackType == EnemyAttackType.Normal)
+            {
+                shootTarget.position = new Vector3(Random.Range(startAttackPoint.x,endAttackPoint.x), shootTarget.position.y,0);
+            }
+            else if (enemyAttackType == EnemyAttackType.Double)
+            {
+                doubleAttackPoint = new Vector3(shootTarget.position.x, shootTarget.position.y,0);
+                shootTarget.position = doubleAttackPoint;
+                doubleAttacking = true;
+            }
+        }
         
-        if (enemyAttackType == EnemyAttackType.Perfect)
-        {
-            shootTarget.position = new Vector3(Random.Range(startPerfectAttackPoint.x,endPerfectAttackPoint.x), shootTarget.position.y,0);
-        }
-        else if (enemyAttackType == EnemyAttackType.Normal)
-        {
-            shootTarget.position = new Vector3(Random.Range(startAttackPoint.x,endAttackPoint.x), shootTarget.position.y,0);
-        }
-        else if (enemyAttackType == EnemyAttackType.Double)
-        {
-            shootTarget.position = new Vector3(shootTarget.position.x, shootTarget.position.y,0);
-        }
 
         if (GetComponent<EnemyController>().enemyPower == PowerList.DoubleAttack && GameManager.instance.CurrentWindForce < 0.5f && GetComponent<EnemyController>().isUsePower == false)
         {

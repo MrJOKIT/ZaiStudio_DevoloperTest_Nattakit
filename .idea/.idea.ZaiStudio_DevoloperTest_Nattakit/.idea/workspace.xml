@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9bfb7b71-dad1-4c33-92a2-9a45a54c02b1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ZaiStudio_DevoloperTest_Nattakit/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ZaiStudio_DevoloperTest_Nattakit/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_James/Script/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_James/Script/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_James/Script/ScreenShot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_James/Script/ScreenShot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/GvhProjectSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/GvhProjectSettings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_James/Script/EnemyProjectileThrower.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_James/Script/EnemyProjectileThrower.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +106,7 @@
       <workItem from="1737282091284" duration="48054000" />
       <workItem from="1737454357993" duration="11516000" />
       <workItem from="1737576596875" duration="569000" />
-      <workItem from="1737581568969" duration="222000" />
+      <workItem from="1737581568969" duration="450000" />
     </task>
     <servers />
   </component>
