@@ -6,12 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9bfb7b71-dad1-4c33-92a2-9a45a54c02b1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ZaiStudio_DevoloperTest_Nattakit/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ZaiStudio_DevoloperTest_Nattakit/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_James/Scene/HowToPlayScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_James/Scene/HowToPlayScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_James/Scene/MainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_James/Scene/MainMenu.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_James/Scene/PlayScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_James/Scene/PlayScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/GvhProjectSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/GvhProjectSettings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
